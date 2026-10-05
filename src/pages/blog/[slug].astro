@@ -6,8 +6,18 @@ export function getStaticPaths() {
   return posts.map((post) => ({ params: { slug: post.slug }, props: { post } }));
 }
 const { post } = Astro.props;
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  headline: post.title,
+  description: post.description,
+  datePublished: post.date,
+  image: `https://waterheaterleakingverobeachfl.com${post.image}`,
+  mainEntityOfPage: `https://waterheaterleakingverobeachfl.com/blog/${post.slug}/`,
+};
 ---
 <Base title={`${post.title} | Copperlane`} description={post.description} path={`/blog/${post.slug}/`}>
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
   <article>
     <header class="bg-ink text-white">
       <div class="max-w-3xl mx-auto px-4 py-14">
@@ -17,13 +27,18 @@ const { post } = Astro.props;
       </div>
     </header>
     <img src={post.image} alt={post.imageAlt} class="w-full max-h-[420px] object-cover" />
-    <div class="max-w-3xl mx-auto px-4 py-12">
-      {post.paragraphs.map((block) => (
+    <div class="max-w-3xl mx-auto px-4 py-12 prose-blog">
+      <h2 class="font-heading text-2xl font-bold mb-3">Key takeaways</h2>
+      <ul class="list-disc pl-5 mb-8 space-y-2 text-gray-700">
+        {post.takeaways.map((item) => <li>{item}</li>)}
+      </ul>
+      {post.sections.map((block) => (
         <section class="mb-8">
           <h2 class="font-heading text-2xl font-bold mb-3">{block.h}</h2>
-          {block.body.map((p) => <p class="text-lg text-gray-700 leading-relaxed mb-3" set:html={p} />)}
+          <div class="text-lg text-gray-700 leading-relaxed space-y-3 [&_a]:text-primary [&_a]:font-semibold [&_table]:w-full [&_table]:text-base [&_td]:border-b [&_td]:border-stone-200 [&_td]:py-2 [&_th]:text-left [&_th]:py-2" set:html={block.html} />
         </section>
       ))}
+      <p class="my-8"><a href="tel:7725550140" class="inline-block bg-primary text-white font-bold py-3 px-6 rounded-full">Call (772) 555-0140</a></p>
       <h2 class="font-heading text-2xl font-bold mb-3">Questions</h2>
       {post.faqs.map((f) => (
         <details class="border-b border-stone-200 py-3">
@@ -31,7 +46,10 @@ const { post } = Astro.props;
           <p class="text-gray-600 mt-2">{f.a}</p>
         </details>
       ))}
-      <p class="mt-8"><a href="tel:7725550140" class="inline-block bg-primary text-white font-bold py-3 px-6 rounded-full">Call (772) 555-0140</a></p>
+      <h2 class="font-heading text-2xl font-bold mt-10 mb-3">Sources</h2>
+      <ul class="list-disc pl-5 space-y-2">
+        {post.sources.map((s) => <li><a href={s.href} class="text-primary font-semibold">{s.label}</a></li>)}
+      </ul>
     </div>
   </article>
 </Base>

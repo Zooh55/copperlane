@@ -48,21 +48,22 @@ body {
 .hero-estimate { border: 1px solid rgba(255,255,255,.45); color: #fff; }
 .hero-estimate:hover { border-color: #7dd3fc; color: #7dd3fc; }
 
-.home-hero { display: grid; background: #0c1f28; }
-.home-hero-photo { position: relative; min-height: 280px; order: -1; }
-.home-hero-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 30%; }
-.home-hero-caption {
-  position: absolute; left: 1rem; bottom: 1rem; max-width: 16rem;
-  padding: .55rem .75rem; background: rgba(12, 31, 40, .88); border-left: 3px solid #7dd3fc;
-  color: #fff; font-size: .75rem; line-height: 1.35;
+.home-hero { position: relative; min-height: 78vh; display: flex; align-items: flex-end; background: #0c1f28; }
+.home-hero-photo { position: absolute; inset: 0; }
+.home-hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; }
+.home-hero-copy {
+  position: relative; z-index: 1; width: 100%;
+  padding: 5.5rem 0 3rem;
+  background: linear-gradient(180deg, rgba(12,31,40,.2) 0%, rgba(12,31,40,.78) 38%, rgba(12,31,40,.92) 100%);
 }
-.home-hero-copy { padding: 2.5rem 0 2.25rem; }
-.home-hero-inner { width: min(36rem, 100%); margin-inline: auto; padding-inline: 1.25rem; }
+.home-hero-inner { width: min(40rem, 100%); margin-inline: auto; padding-inline: 1.25rem; }
 @media (min-width: 1024px) {
-  .home-hero { grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); min-height: 620px; }
-  .home-hero-photo { order: 0; min-height: 100%; }
-  .home-hero-copy { display: flex; align-items: center; padding: 4rem 2rem 3.5rem 0; }
-  .home-hero-inner { margin-left: max(1.25rem, calc((100vw - 80rem) / 2)); margin-right: 2rem; padding-inline: 0; }
+  .home-hero { min-height: 680px; align-items: center; }
+  .home-hero-copy {
+    background: linear-gradient(90deg, rgba(12,31,40,.9) 0%, rgba(12,31,40,.72) 46%, rgba(12,31,40,.12) 78%);
+    padding: 6rem 0;
+  }
+  .home-hero-inner { margin-left: max(1.25rem, calc((100vw - 80rem) / 2)); margin-right: auto; padding-inline: 0; }
 }
 
 .page-hero { position: relative; background: #0c1f28; overflow: hidden; }
@@ -81,4 +82,4 @@ body {
   font-size: .75rem; text-transform: uppercase; letter-spacing: .05em;
 }
 .card-hover { transition: transform .25s ease, box-shadow .25s ease; }
-.card-hover:hover { transform: translateY(-6px); box-shadow: 0 20px 40px -16px rgba(220,38,38,.2); }
+.card-hover:hover { transform: translateY(-6px); box-shadow: 0 20px 40px -16px rgba(11,110,132,.35); }

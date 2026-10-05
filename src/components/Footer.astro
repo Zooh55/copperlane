@@ -2,7 +2,7 @@
 import { site, services, areas } from "../data/site";
 const year = new Date().getFullYear();
 ---
-<footer class="bg-[#0c0a09] text-white pb-24 lg:pb-0">
+<footer class="bg-[#0c0a09] text-white pb-24">
   <div class="max-w-7xl mx-auto px-4 py-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8">
     <div class="sm:col-span-2 lg:col-span-4">
       <a href="/" class="inline-flex items-center gap-3 mb-4">
@@ -12,7 +12,7 @@ const year = new Date().getFullYear();
           <span class="block mt-1 text-[0.65rem] font-extrabold tracking-[0.16em] uppercase text-secondary">Vero Beach</span>
         </span>
       </a>
-      <p class="text-gray-400 leading-relaxed max-w-sm">Leaking water heaters in Vero Beach. Copperlane takes the call. An independent provider does the work and quotes the price.</p>
+      <p class="text-gray-400 leading-relaxed max-w-sm">Leaking water heaters in Vero Beach. We find the leak, and you approve the price before we start.</p>
     </div>
     <div class="lg:col-span-2">
       <h2 class="text-sm font-extrabold tracking-wide uppercase text-secondary mb-4">Services</h2>
@@ -56,4 +56,4 @@ const year = new Date().getFullYear();
     </div>
   </div>
 </footer>
-<a href={site.phoneTel} class="lg:hidden fixed bottom-4 right-4 z-50 bg-primary text-white font-extrabold py-3.5 px-5 rounded-full shadow-2xl">Call {site.phone}</a>
+<a href={site.phoneTel} class="fixed bottom-4 right-4 z-50 bg-primary text-white font-extrabold py-3.5 px-5 rounded-full shadow-2xl">Leaking? Call now</a>

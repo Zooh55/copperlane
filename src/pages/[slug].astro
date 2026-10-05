@@ -12,12 +12,12 @@ export function getStaticPaths() {
 const { page } = Astro.props;
 const faqs = [
   ...page.faqs,
-  { q: "Which Vero Beach ZIPs does this cover?", a: "32960, 32962, 32963, 32966, 32967, and 32968. Sebastian 32958 is outside the line." },
-  { q: "Who does the work?", a: "An independent provider. Copperlane confirms the address and connects the call. The provider quotes before any work starts." },
+  { q: "Which Vero Beach ZIPs does this cover?", a: "32960, 32962, 32963, 32966, 32967, and 32968. Sebastian 32958 is outside this coverage." },
+  { q: "Who does the work?", a: "We do. We confirm the address, quote the job, and you approve the price before we start." },
   { q: "Should I cap the relief valve to stop a drip?", a: "No. A temperature-and-pressure valve that is open is a safety device. Capping it can turn a drip into a burst tank." },
-  { q: "What if the shutoff on the tank will not turn?", a: "Use the house main. Open a hot faucet so pressure leaves through the spout. Tell the provider the tank valve is stuck." },
+  { q: "What if the shutoff on the tank will not turn?", a: "Use the house main. Open a hot faucet so pressure leaves through the spout. Tell us the tank valve is stuck." },
   { q: "Can I keep using hot water while it leaks?", a: "Each draw pulls cold water into a failed tank and pushes more water out. If the shell is leaking, stop using it." },
-  { q: "Is there a published price?", a: "No. The provider prices the visit after hearing fuel type, access, and whether water is still spreading." },
+  { q: "Is there a published price?", a: "No. We price the visit after hearing fuel type, access, and whether water is still spreading. You approve that price before we start." },
 ];
 const schema = {
   "@context": "https://schema.org",
@@ -81,7 +81,7 @@ const schema = {
     <section class="pb-8">
       <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-10">
         <div class="space-y-4">
-          <div class="bg-foam rounded-xl p-5 border border-cyan-100"><h3 class="font-bold">Phone</h3><a class="text-primary font-bold text-xl" href={site.phoneTel}>{site.phone}</a><p class="text-sm text-gray-500">Fastest way to get a provider on the address.</p></div>
+          <div class="bg-foam rounded-xl p-5 border border-cyan-100"><h3 class="font-bold">Phone</h3><a class="text-primary font-bold text-xl" href={site.phoneTel}>{site.phone}</a><p class="text-sm text-gray-500">Fastest way to get us to the address.</p></div>
           <div class="bg-foam rounded-xl p-5 border border-cyan-100"><h3 class="font-bold">Address</h3><p>{site.street}<br />{site.city}</p></div>
           <div class="bg-foam rounded-xl p-5 border border-cyan-100"><h3 class="font-bold">ZIPs</h3><p>{site.zips.join(", ")}</p></div>
         </div>
@@ -135,7 +135,7 @@ const schema = {
       <h2 class="font-heading text-2xl font-bold mb-4">Related pages</h2>
       <div class="flex flex-wrap gap-3">
         {page.related.map((r) => <a href={r.href} class="px-4 py-2 rounded-full border border-stone-300 font-semibold hover:border-primary hover:text-primary">{r.label}</a>)}
-        <a href="/" class="px-4 py-2 rounded-full border border-stone-300 font-semibold hover:border-primary hover:text-primary">Vero Beach water heater line</a>
+        <a href="/" class="px-4 py-2 rounded-full border border-stone-300 font-semibold hover:border-primary hover:text-primary">Vero Beach water heater help</a>
       </div>
     </div>
   </section>
