@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Copperlane">
+  <rect width="64" height="64" rx="16" fill="#0B6E84"/>
+  <rect x="22" y="16" width="20" height="32" rx="8" fill="#E7F4F7"/>
+  <rect x="27" y="12" width="10" height="6" rx="2" fill="#7DD3FC"/>
+  <path d="M32 28c2.4 2.8 4 4.6 4 7.2a4 4 0 1 1-8 0c0-2.6 1.6-4.4 4-7.2z" fill="#0B6E84"/>
+</svg>

@@ -1,0 +1,10 @@
+---
+import Base from "../layouts/Base.astro";
+import { site } from "../data/site";
+---
+<Base title="Page not found | Copperlane" description="That page is not on the Copperlane site." path="/404/">
+  <section class="py-24 px-4 text-center">
+    <h1 class="font-heading text-4xl font-bold mb-4">That page is not on this site.</h1>
+    <p class="mb-6"><a href="/" class="text-primary font-bold">Go to the Vero Beach water heater page</a> or call <a href={site.phoneTel}>{site.phone}</a>.</p>
+  </section>
+</Base>

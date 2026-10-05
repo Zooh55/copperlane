@@ -1,0 +1,15 @@
+---
+import { site } from "../data/site";
+interface Props { title: string; text?: string }
+const { title, text = "Have the street, the ZIP, and whether the tank is gas or electric." } = Astro.props;
+---
+<section class="bg-primary text-white">
+  <div class="max-w-7xl mx-auto px-4 py-12 md:py-14 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+    <div class="max-w-xl">
+      <p class="text-secondary text-xs font-extrabold tracking-[0.16em] uppercase mb-2">Call the line</p>
+      <h2 class="font-heading text-3xl md:text-4xl font-black leading-tight">{title}</h2>
+      <p class="mt-2 text-white/85">{text}</p>
+    </div>
+    <a href={site.phoneTel} class="hero-call text-lg shrink-0">{site.phone}</a>
+  </div>
+</section>

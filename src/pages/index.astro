@@ -1,0 +1,198 @@
+---
+import Base from "../layouts/Base.astro";
+import CallBand from "../components/CallBand.astro";
+import { site } from "../data/site";
+const services = [
+  { href: "/leaking-water-heater/", title: "Leaking water heater", img: "/images/tank-base.jpg", desc: "A puddle on the slab, a pan that will not stay empty, or a closet ceiling going soft. We sort a fitting drip from a tank that has already opened." },
+  { href: "/burst-water-heater/", title: "Burst water heater", img: "/images/burst-flood.jpg", desc: "The shell let go and the garage is taking water. Shut the inlet if you can reach it. The visit after that is a replacement, not a patch." },
+  { href: "/no-hot-water/", title: "No hot water", img: "/images/cold-shower.jpg", desc: "Pressure is fine. The shower is cold or dies halfway through. Elements, gas controls, and thermostats are the usual causes when the floor is dry." },
+  { href: "/water-heater-repair/", title: "Repair", img: "/images/relief-valve.jpg", desc: "The tank still holds water. A valve, element, thermostat, or union failed. A rust hole in the steel is not this job." },
+  { href: "/water-heater-replacement/", title: "Replacement", img: "/images/new-tank.jpg", desc: "The failed tank comes out. A new storage heater goes in the same closet or garage, sized to the house, not to the old sticker." },
+  { href: "/tankless-water-heater/", title: "Tankless", img: "/images/tankless-unit.jpg", desc: "A wall unit with a code, scale, or water that swings hot to cold. A different visit from a 40-gallon leak." },
+];
+const reasons = [
+  { title: "The line takes the leak", desc: "Call " + site.phone + " and say where the water is. The coverage is the six Vero Beach ZIPs, not all of Indian River County." },
+  { title: "Garage, closet, or chase", desc: "A slab garage, a downtown hall closet, and an island utility chase are three different visits. The street tells us which one." },
+  { title: "Gas, electric, or tankless", desc: "An element, a dead pilot, and a tankless error code do not use the same parts. Say what you can see before anyone drives." },
+  { title: "Leave a failed tank alone", desc: "Do not cap the relief valve. Do not keep showering on a tank that is already wetting the floor. That feeds the leak." },
+  { title: "Five communities, one number", desc: "Florida Ridge, West Vero Corridor, Gifford, Wabasso, and South Beach each have a page. Downtown 32960 starts here." },
+  { title: "The price comes from the provider", desc: "You hear the quote after the fuel type and the leak are clear. Copperlane does not publish a flat rate and does not send the invoice." },
+];
+---
+<Base title="Leaking Water Heater in Vero Beach, FL | Copperlane" description="A leaking water heater in Vero Beach spreads across the slab. Call Copperlane at (772) 555-0140. An independent provider quotes the visit." path="/">
+  <section class="home-hero">
+    <div class="home-hero-copy">
+      <div class="home-hero-inner">
+        <p class="hero-kicker">Vero Beach, Florida</p>
+        <h1 class="hero-title text-white">Leaking water heater in Vero Beach, FL</h1>
+        <p class="mt-3 text-xl md:text-2xl text-secondary font-bold leading-snug">The puddle does not stay under the tank.</p>
+        <p class="mt-4 text-base md:text-lg text-white/80 leading-relaxed">Rust at the base, a closet ceiling going soft, or a shower that went cold. Call {site.phone}. Copperlane checks the address and puts you with an available provider. You hear the price before any work starts.</p>
+        <div class="mt-6 flex flex-col sm:flex-row gap-3">
+          <a href={site.phoneTel} class="hero-call text-lg">Call {site.phone}</a>
+          <a href="/contact/" class="hero-estimate text-lg">Free estimate</a>
+        </div>
+      </div>
+    </div>
+    <div class="home-hero-photo">
+      <img src="/images/hero.jpg" alt="Technician inspecting a leaking water heater on a Vero Beach garage slab" />
+      <p class="home-hero-caption">Supply shut off. Tank still wet. Vero Beach garage.</p>
+    </div>
+  </section>
+  <div class="urgency-stripe h-2"></div>
+
+  <section class="bg-dark py-8">
+    <div class="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-6 text-center text-white">
+      <div><div class="text-3xl font-black text-secondary">Free</div><div class="text-sm text-gray-400">Estimate before any work</div></div>
+      <div><div class="text-3xl font-black text-secondary">Call</div><div class="text-sm text-gray-400">Street and fuel type</div></div>
+      <div><div class="text-3xl font-black text-secondary">6 ZIPs</div><div class="text-sm text-gray-400">Vero Beach only</div></div>
+      <div><div class="text-3xl font-black text-secondary">Quote</div><div class="text-sm text-gray-400">Agreed before we start</div></div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <div>
+        <span class="emergency-badge mb-4 inline-block">Act now</span>
+        <h2 class="font-heading text-3xl md:text-4xl font-black text-dark mb-6">A leaking tank keeps filling from the house supply.</h2>
+        <p class="text-gray-700 text-lg mb-4 leading-relaxed">Forty or fifty gallons is already in the jacket. The cold pipe is still open. Every shower pulls fresh water in and pushes more out through the split. On a Vero Beach slab that water has one place to go: across the garage and under the drywall.</p>
+        <p class="text-gray-700 text-lg mb-6 leading-relaxed">Salt air on the island eats the fittings sooner than the same tank lasts inland. A downtown closet in 32960 puts the leak in the hall. A Florida Ridge garage puts it on the driveway. The job changes with the room.</p>
+        <div class="bg-foam border-l-4 border-primary p-6 rounded-r-lg mb-6">
+          <p class="text-primary font-bold mb-2">Read the floor</p>
+          <p class="text-gray-700">Brown water under the middle of the tank means the steel has opened. A new valve will not hold that. Clear water at a union can be a repair. A relief valve that is running is doing its job. Do not cap it.</p>
+        </div>
+        <a href={site.phoneTel} class="inline-block bg-primary hover:bg-primary-dark text-white font-bold text-lg py-4 px-8 rounded-full shadow-lg">Don't wait — call {site.phone}</a>
+      </div>
+      <div class="grid grid-cols-2 gap-4">
+        <img src="/images/tank-base.jpg" alt="Rust-stained water at the base of a water heater" class="rounded-2xl shadow-xl w-full h-64 object-cover" />
+        <img src="/images/burst-flood.jpg" alt="Water spreading from a failed water heater" class="rounded-2xl shadow-xl w-full h-64 object-cover mt-8" />
+        <img src="/images/relief-valve.jpg" alt="Relief valve on a residential water heater" class="rounded-2xl shadow-xl w-full h-64 object-cover" />
+        <img src="/images/cold-shower.jpg" alt="Cold shower from a water heater that is not heating" class="rounded-2xl shadow-xl w-full h-64 object-cover mt-8" />
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-foam">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="text-center mb-14">
+        <h2 class="font-heading text-3xl md:text-4xl font-black text-dark mb-4">What you get when you call Copperlane</h2>
+        <p class="text-gray-600 max-w-3xl mx-auto text-lg">A person takes the street, checks the ZIP, and hands you to a provider who can actually come. If nobody is free, the line says so.</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {reasons.map((item, i) => (
+          <article class="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 card-hover">
+            <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-4">
+              <span class="text-2xl font-black text-primary">{i + 1}</span>
+            </div>
+            <h3 class="text-xl font-bold text-dark mb-3">{item.title}</h3>
+            <p class="text-gray-600 leading-relaxed">{item.desc}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="text-center mb-14">
+        <h2 class="font-heading text-3xl md:text-4xl font-black text-dark mb-4">Six jobs. Say which one you are looking at.</h2>
+        <p class="text-gray-600 max-w-3xl mx-auto text-lg">A drip at a fitting and a tank that has opened are not the same dispatch. Pick the one that matches the floor.</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {services.map((service) => (
+          <a href={service.href} class="group bg-white rounded-2xl overflow-hidden card-hover border border-gray-100 shadow-md block">
+            <div class="relative h-48 overflow-hidden">
+              <img src={service.img} alt="" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-dark mb-3 group-hover:text-primary">{service.title}</h3>
+              <p class="text-gray-600 mb-4 leading-relaxed text-sm">{service.desc}</p>
+              <span class="text-primary font-semibold text-sm">Learn more →</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-dark">
+    <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <img src="/images/closet-leak.jpg" alt="Utility closet where a leaking water heater meets the hallway" class="rounded-2xl shadow-2xl w-full h-[460px] object-cover" />
+      <div>
+        <span class="emergency-badge mb-4 inline-block">Watch for</span>
+        <h2 class="font-heading text-3xl md:text-4xl font-black text-white mb-6">The tank is already telling you. Most people notice too late.</h2>
+        <ul class="text-gray-200 space-y-3 mb-8">
+          <li><strong class="text-secondary">Brown water under the jacket.</strong> The glass lining is gone. Plan on a replacement.</li>
+          <li><strong class="text-secondary">A pan that fills overnight.</strong> Something above it is still leaking. Emptying the pan is not a repair.</li>
+          <li><strong class="text-secondary">A soft spot in the ceiling.</strong> The closet has already overflowed into the room below.</li>
+          <li><strong class="text-secondary">Popping when the heater runs.</strong> Sediment is baking on the bottom. The tank is near the end.</li>
+          <li><strong class="text-secondary">Hot, then cold, in one shower.</strong> A dead element or a tank that is too small. The floor can still be dry.</li>
+          <li><strong class="text-secondary">A relief valve that weeps when the burner runs.</strong> Temperature or pressure is high. Leave the valve open.</li>
+        </ul>
+        <a href={site.phoneTel} class="inline-block bg-primary hover:bg-primary-dark text-white font-bold text-lg py-4 px-8 rounded-full shadow-xl">Seeing this? Call {site.phone}</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-foam">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="text-center mb-14">
+        <h2 class="font-heading text-3xl md:text-4xl font-black mb-4">Four steps from the call to the quote</h2>
+        <p class="text-gray-600 max-w-3xl mx-auto text-lg">Copperlane does not pull the tank. The provider who accepts the job does, and only after you agree to the price.</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {[
+          ["01", "You call", "Street, ZIP, gas or electric, and whether water is still moving."],
+          ["02", "We check coverage", "The house has to sit in 32960, 32962, 32963, 32966, 32967, or 32968."],
+          ["03", "A provider quotes", "They hear the leak and give a number before any work starts."],
+          ["04", "They do the visit", "Repair or replacement is their job. The invoice is theirs too."],
+        ].map(([n, title, desc]) => (
+          <article class="text-center bg-white rounded-2xl p-8 shadow-md">
+            <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
+              <span class="text-white font-black text-xl">{n}</span>
+            </div>
+            <h3 class="text-xl font-bold mb-3">{title}</h3>
+            <p class="text-gray-600 leading-relaxed">{desc}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <h2 class="font-heading text-3xl md:text-4xl font-black text-center mb-10">Neighborhoods on this line</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+        {[
+          ["/florida-ridge/", "Florida Ridge", "/images/street-inland.jpg", "South of the city. Garage tanks on slab."],
+          ["/west-vero-corridor/", "West Vero", "/images/florida-home.jpg", "Inland, often 32966."],
+          ["/gifford/", "Gifford", "/images/shed-heater.jpg", "North of town. Sometimes a second tank."],
+          ["/wabasso/", "Wabasso", "/images/north-road.jpg", "Past Gifford. Not Sebastian."],
+          ["/south-beach/", "South Beach", "/images/street-island.jpg", "Barrier island, 32963."],
+        ].map(([href, name, img, note]) => (
+          <a href={href} class="rounded-2xl overflow-hidden shadow-md bg-white border border-gray-100 card-hover block">
+            <img src={img} alt="" class="h-36 w-full object-cover" />
+            <span class="block p-4"><span class="font-bold block">{name}</span><span class="text-sm text-gray-500">{note}</span></span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-white">
+    <div class="max-w-3xl mx-auto px-4">
+      <h2 class="font-heading text-3xl md:text-4xl font-black mb-6">Questions before you call</h2>
+      <div class="divide-y divide-gray-200 border border-gray-100 rounded-2xl px-5 shadow-sm">
+        <details class="py-4" open><summary class="font-bold cursor-pointer">What should I do if the heater is leaking right now?</summary><p class="mt-2 text-gray-600">Shut the cold inlet if you can do it dry. Open the water-heater breaker. Keep people off wet floors near outlets. Then call {site.phone}.</p></details>
+        <details class="py-4"><summary class="font-bold cursor-pointer">Is rusty water under the tank a repair?</summary><p class="mt-2 text-gray-600">Almost never. Brown water in the center means the shell has failed. That visit is a replacement.</p></details>
+        <details class="py-4"><summary class="font-bold cursor-pointer">The tank feels wet but I cannot find a drip.</summary><p class="mt-2 text-gray-600">Humidity makes a cold tank sweat. A real leak tracks one seam or one fitting. If you cannot tell, call it a leak until someone looks.</p></details>
+        <details class="py-4"><summary class="font-bold cursor-pointer">Can I plug the relief valve?</summary><p class="mt-2 text-gray-600">No. It opens because the tank is too hot or the house pressure is high. Capping it is how a drip becomes a burst.</p></details>
+        <details class="py-4"><summary class="font-bold cursor-pointer">The shower is cold and the floor is dry.</summary><p class="mt-2 text-gray-600">That is a no-heat call, not a leak. Check the breaker once. If it trips again, leave it. See <a href="/no-hot-water/">no hot water</a>.</p></details>
+        <details class="py-4"><summary class="font-bold cursor-pointer">Which ZIPs do you take?</summary><p class="mt-2 text-gray-600">{site.zips.join(", ")}. Sebastian 32958 is outside this line.</p></details>
+        <details class="py-4"><summary class="font-bold cursor-pointer">Does Copperlane fix the heater?</summary><p class="mt-2 text-gray-600">No. An independent provider does the work and sends the bill. Copperlane connects the call.</p></details>
+        <details class="py-4"><summary class="font-bold cursor-pointer">Will I get a price on the phone?</summary><p class="mt-2 text-gray-600">The provider quotes after the fuel type and the leak are clear. This site does not list a dollar amount.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <CallBand title="Water on the floor right now?" text="Have the street ready. The map and address are in the footer." />
+</Base>

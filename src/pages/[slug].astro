@@ -1,0 +1,144 @@
+---
+import Base from "../layouts/Base.astro";
+import PageHero from "../components/PageHero.astro";
+import CallBand from "../components/CallBand.astro";
+import { pages } from "../data/pages";
+import { site } from "../data/site";
+
+export function getStaticPaths() {
+  return pages.map((page) => ({ params: { slug: page.slug }, props: { page } }));
+}
+
+const { page } = Astro.props;
+const faqs = [
+  ...page.faqs,
+  { q: "Which Vero Beach ZIPs does this cover?", a: "32960, 32962, 32963, 32966, 32967, and 32968. Sebastian 32958 is outside the line." },
+  { q: "Who does the work?", a: "An independent provider. Copperlane confirms the address and connects the call. The provider quotes before any work starts." },
+  { q: "Should I cap the relief valve to stop a drip?", a: "No. A temperature-and-pressure valve that is open is a safety device. Capping it can turn a drip into a burst tank." },
+  { q: "What if the shutoff on the tank will not turn?", a: "Use the house main. Open a hot faucet so pressure leaves through the spout. Tell the provider the tank valve is stuck." },
+  { q: "Can I keep using hot water while it leaks?", a: "Each draw pulls cold water into a failed tank and pushes more water out. If the shell is leaking, stop using it." },
+  { q: "Is there a published price?", a: "No. The provider prices the visit after hearing fuel type, access, and whether water is still spreading." },
+];
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+};
+---
+<Base title={page.title} description={page.description} path={`/${page.slug}/`}>
+  <PageHero eyebrow={page.eyebrow} title={page.h1} description={page.lede} image={page.image} imageAlt={page.imageAlt} />
+
+  <section class="py-20">
+    <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <div>
+        <h2 class="font-heading text-3xl md:text-4xl font-black text-dark mb-6">{page.introTitle}</h2>
+        {page.paragraphs.map((p) => <p class="text-gray-700 text-lg mb-4 leading-relaxed" set:html={p} />)}
+        <ul class="space-y-3 text-gray-700 mt-6">
+          {page.bullets.map((b) => <li class="flex items-start gap-3"><span class="text-primary font-bold">✓</span><span>{b}</span></li>)}
+        </ul>
+      </div>
+      <img src={page.image} alt={page.imageAlt} class="rounded-2xl shadow-xl w-full h-[420px] object-cover" />
+    </div>
+  </section>
+
+  <section class="py-20 bg-foam">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="text-center mb-12 max-w-3xl mx-auto">
+        <h2 class="font-heading text-3xl font-bold text-dark mb-4">{page.cardsTitle}</h2>
+        <p class="text-gray-600 text-lg">{page.cardsIntro}</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {page.cards.map((card) => (
+          <article class="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 card-hover">
+            <h3 class="font-bold text-dark mb-2">{card.title}</h3>
+            <p class="text-gray-600 text-sm leading-relaxed">{card.text}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-foam">
+    <div class="max-w-7xl mx-auto px-4">
+      <h2 class="font-heading text-3xl md:text-4xl font-black text-center mb-12">{page.stepsTitle}</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {page.steps.map((step, i) => (
+          <article class="text-center bg-white rounded-2xl p-8 shadow-md">
+            <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4"><span class="text-white font-black text-xl">0{i + 1}</span></div>
+            <h3 class="font-bold mb-2">{step.title}</h3>
+            <p class="text-gray-600 text-sm leading-relaxed">{step.text}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {page.slug === "contact" && (
+    <section class="pb-8">
+      <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-10">
+        <div class="space-y-4">
+          <div class="bg-foam rounded-xl p-5 border border-cyan-100"><h3 class="font-bold">Phone</h3><a class="text-primary font-bold text-xl" href={site.phoneTel}>{site.phone}</a><p class="text-sm text-gray-500">Fastest way to get a provider on the address.</p></div>
+          <div class="bg-foam rounded-xl p-5 border border-cyan-100"><h3 class="font-bold">Address</h3><p>{site.street}<br />{site.city}</p></div>
+          <div class="bg-foam rounded-xl p-5 border border-cyan-100"><h3 class="font-bold">ZIPs</h3><p>{site.zips.join(", ")}</p></div>
+        </div>
+        <form id="lead-form" class="bg-white border border-stone-200 rounded-2xl p-8 shadow-lg">
+          <h2 class="font-heading text-2xl font-bold mb-2">Request a callback</h2>
+          <p class="text-gray-500 mb-4">If water is spreading, call. This form confirms on the page.</p>
+          <label class="block text-sm font-semibold mb-1" for="name">Name</label>
+          <input id="name" required class="w-full mb-3 px-4 py-3 rounded-lg border border-gray-300" />
+          <label class="block text-sm font-semibold mb-1" for="phone">Phone</label>
+          <input id="phone" type="tel" required class="w-full mb-3 px-4 py-3 rounded-lg border border-gray-300" />
+          <label class="block text-sm font-semibold mb-1" for="street">Street and ZIP</label>
+          <input id="street" required class="w-full mb-3 px-4 py-3 rounded-lg border border-gray-300" />
+          <label class="block text-sm font-semibold mb-1" for="issue">What is happening</label>
+          <select id="issue" class="w-full mb-3 px-4 py-3 rounded-lg border border-gray-300">
+            <option>Leaking tank</option><option>Burst / flooding</option><option>No hot water</option><option>Replacement</option><option>Tankless</option>
+          </select>
+          <label class="block text-sm font-semibold mb-1" for="notes">Details</label>
+          <textarea id="notes" rows="4" class="w-full mb-3 px-4 py-3 rounded-lg border border-gray-300"></textarea>
+          <button class="bg-primary text-white font-bold py-3 px-6 rounded-full" type="submit">Show confirmation</button>
+          <p id="form-note" class="hidden mt-3 bg-green-50 border border-green-200 rounded-lg p-3 text-sm">This page does not send the form to a server. Call {site.phone} so a person can take the address.</p>
+        </form>
+      </div>
+    </section>
+    <script>
+      const form = document.getElementById("lead-form");
+      form?.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const note = document.getElementById("form-note");
+        if (note) note.classList.remove("hidden");
+      });
+    </script>
+  )}
+
+  <section class="py-16 bg-stone-50">
+    <div class="max-w-3xl mx-auto px-4">
+      <h2 class="font-heading text-3xl font-bold mb-6">Questions about this job</h2>
+      <div class="divide-y divide-stone-200 bg-white rounded-2xl border border-stone-200 px-5">
+        {faqs.map((f) => (
+          <details class="py-4">
+            <summary class="font-semibold cursor-pointer">{f.q}</summary>
+            <p class="text-gray-600 mt-2">{f.a}</p>
+          </details>
+        ))}
+      </div>
+      <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    </div>
+  </section>
+
+  <section class="py-12">
+    <div class="max-w-7xl mx-auto px-4">
+      <h2 class="font-heading text-2xl font-bold mb-4">Related pages</h2>
+      <div class="flex flex-wrap gap-3">
+        {page.related.map((r) => <a href={r.href} class="px-4 py-2 rounded-full border border-stone-300 font-semibold hover:border-primary hover:text-primary">{r.label}</a>)}
+        <a href="/" class="px-4 py-2 rounded-full border border-stone-300 font-semibold hover:border-primary hover:text-primary">Vero Beach water heater line</a>
+      </div>
+    </div>
+  </section>
+
+  <CallBand title={page.cta} />
+</Base>
