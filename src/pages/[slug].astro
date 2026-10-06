@@ -172,33 +172,6 @@ if (page.faqs && page.faqs.length > 0) {
           </div>
         )}
 
-        <!-- Pricing Guide Table if present -->
-        {page.pricingTable && (
-          <div class="mt-10 overflow-x-auto">
-            <h3 class="font-heading text-xl font-bold text-dark mb-2">
-              {page.pricingTable.caption || "Transparent Upfront Pricing Guide"}
-            </h3>
-            <table class="prose-table">
-              <thead>
-                <tr>
-                  {page.pricingTable.headers.map((h) => <th>{h}</th>)}
-                </tr>
-              </thead>
-              <tbody>
-                {page.pricingTable.rows.map((row) => (
-                  <tr>
-                    {row.map((cell, idx) => (
-                      <td class={idx === 1 ? "font-extrabold text-primary" : idx === 0 ? "font-bold text-dark" : ""}>{cell}</td>
-                    ))}
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-            <p class="text-xs text-slate-500 italic mt-1">
-              * Exact written quote provided on site prior to commencement. Includes materials, disposal, and labor.
-            </p>
-          </div>
-        )}
       </div>
 
       <!-- Sticky Conversion Sidebar -->

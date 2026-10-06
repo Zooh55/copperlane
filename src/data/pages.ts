@@ -22,7 +22,6 @@ export type PageDoc = {
   paragraphs: string[];
   bullets: string[];
   table?: TableData;
-  pricingTable?: TableData;
   cardsTitle: string;
   cardsIntro: string;
   cards: Card[];
@@ -86,17 +85,6 @@ export const pages: PageDoc[] = [
         ["Tankless Maintenance", "Mineral scale build-up, error code E1/E2, temp drop", "Full chemical descaling, sensor clean, flow rate calibration", "1.5 to 2 hours"],
       ],
     },
-    pricingTable: {
-      caption: "Upfront Cost Estimates for Indian River County",
-      headers: ["Job Category", "Standard Range", "Inclusions", "Warranty"],
-      rows: [
-        ["Diagnostic & Minor Repair", "$180 – $340", "Electrical testing, pressure test, gasket/valve replacement", "1-Year Parts & Labor"],
-        ["Element & Thermostat Overhaul", "$240 – $420", "Dual heavy-duty resistored elements, upper/lower thermostats", "1-Year Parts & Labor"],
-        ["Standard 40/50 Gal Electric Swap", "$1,450 – $2,250", "New tank, expansion tank, brass ball valve, haul-away, permit", "6 to 10-Yr Tank / 1-Yr Labor"],
-        ["Standard Gas Water Heater Swap", "$1,750 – $2,650", "New gas unit, gas flex connector, flue venting inspection, permit", "6 to 10-Yr Tank / 1-Yr Labor"],
-        ["Tankless System Retrofit", "$2,800 – $4,600", "High-efficiency unit, gas line sizing, direct vent run, flush kit", "15-Yr Heat Exchanger / 1-Yr Labor"],
-      ],
-    },
     cardsTitle: "Direct Water Heater Services",
     cardsIntro: "Select the specific service below to understand symptoms, safety protocols, and what our technicians perform on site.",
     cards: [
@@ -155,16 +143,6 @@ export const pages: PageDoc[] = [
         ["T&P Relief Valve", "Steady trickle or intermittent discharge from side pipe", "Excessive temperature (>210°F) or house pressure (>80 PSI)", "Test thermal expansion tank, pressure regulator, or valve swap"],
         ["Lower Drain Cock", "Dripping from plastic valve threading at tank bottom", "Mineral sediment jamming plastic seal or stripped threads", "Replace with heavy-duty full-port brass drain valve"],
         ["Element Access Panel", "Water trickling from behind upper or lower electrical covers", "Deteriorated element rubber gasket or tank weld crack", "Replace heating element gasket or condemn tank if seam split"],
-      ],
-    },
-    pricingTable: {
-      caption: "Vero Beach Water Heater Leak Solutions & Pricing",
-      headers: ["Service Scenario", "Cost Range", "What's Included", "Timeline"],
-      rows: [
-        ["Fitting / Flex Line Re-piping", "$190 – $320", "New brass unions, stainless braided flex lines, pressure test", "45 to 60 Mins"],
-        ["T&P Relief Valve Replacement", "$210 – $340", "New 150 PSI / 210°F brass relief valve, copper drain tube", "45 Mins"],
-        ["Drain Cock Upgrade to Brass", "$175 – $280", "System flush, install full-port brass ball valve, test seal", "1 Hour"],
-        ["Emergency Tank Replacement (40/50G)", "$1,450 – $2,250", "New unit, expansion tank, drain pan, permit, haul-away", "2 to 3 Hours"],
       ],
     },
     cardsTitle: "What to Do While Our Technician Is En Route",
@@ -281,16 +259,6 @@ export const pages: PageDoc[] = [
         ["Hot in Kitchen, Cold in Shower", "Faulty single-handle shower mixing cartridge", "Compare water temperature at multiple hot fixtures", "Replace shower pressure balance cartridge, not water heater"],
       ],
     },
-    pricingTable: {
-      caption: "Vero Beach Heating Component Repair Costs",
-      headers: ["Repair Service", "Price Range", "Components Included", "Labor Warranty"],
-      rows: [
-        ["Single Element Replacement", "$210 – $320", "Heavy-duty incoloy element, new gasket, sediment purge", "1-Year Warranty"],
-        ["Dual Element & Thermostat Overhaul", "$320 – $440", "Both upper/lower elements, both thermostats, flush", "1-Year Warranty"],
-        ["High-Limit Thermostat Replacement", "$190 – $290", "OEM surface mount thermostat, wiring safety check", "1-Year Warranty"],
-        ["Gas Thermocouple / Pilot Assembly", "$220 – $340", "New thermocouple, pilot tubing flush, burn test", "1-Year Warranty"],
-      ],
-    },
     cardsTitle: "What to Check Before Calling a Plumber",
     cardsIntro: "Try these quick non-invasive checks to verify if the issue is a simple switch or breaker trip.",
     cards: [
@@ -323,7 +291,7 @@ export const pages: PageDoc[] = [
     lede: "If your water heater tank is structurally sound without shell corrosion, targeted component repair restores reliable hot water at a fraction of replacement cost.",
     image: "/images/relief-valve.jpg",
     imageAlt: "Valve and element repair on water heater",
-    answerBox: "Water heater repair in Vero Beach involves replacing failed non-structural components—such as incoloy heating elements, surface-mount thermostats, temperature and pressure relief valves, brass drain cocks, and corroded dielectric unions—on tanks that still hold pressure without seam leakage. Repairs average $180 to $420 and extend system lifespan significantly.",
+    answerBox: "Water heater repair in Vero Beach involves replacing failed non-structural components—such as incoloy heating elements, surface-mount thermostats, temperature and pressure relief valves, brass drain cocks, and corroded dielectric unions—on tanks that still hold pressure without seam leakage. Targeted repairs extend system lifespan significantly without replacing the entire storage tank.",
     introTitle: "When Repair Is the Smart Financial Decision",
     paragraphs: [
       "Not every water heater problem requires a brand-new storage tank. At Copperlane, our philosophy is rooted in honest diagnostics: if your tank's steel shell is free of structural rust, less than 7 or 8 years old, and holding hydraulic pressure, component repair is almost always the most cost-effective solution.",
@@ -382,7 +350,7 @@ export const pages: PageDoc[] = [
     lede: "When your water heater reaches the end of its lifespan or ruptures, Copperlane provides turnkey, code-compliant replacements sized precisely for your Vero Beach household.",
     image: "/images/new-tank.jpg",
     imageAlt: "New water heater replacement installation",
-    answerBox: "Water heater replacement in Vero Beach costs between $1,450 and $2,650 for residential storage units (40 to 80-gallon capacity, electric or gas), including old tank haul-away, new ASME thermal expansion tank, full-port brass shutoff valve, code-compliant drain pan, and Indian River County building permitting. Installations take 2 to 4 hours with same-day dispatch.",
+    answerBox: "Water heater replacement in Vero Beach includes complete removal and code-compliant installation of residential storage units (40 to 80-gallon capacity, electric or gas), with old tank haul-away, new ASME thermal expansion tank, full-port brass shutoff valve, code-compliant drain pan, and Indian River County building permitting. Installations take 2 to 4 hours with same-day dispatch.",
     introTitle: "Modern, Energy-Efficient Water Heating Built for Vero Beach",
     paragraphs: [
       "Replacing a failed water heater is more than just swapping tanks—it is an opportunity to significantly reduce monthly electrical consumption and protect your Vero Beach home against future water damage. Water heating accounts for approximately 18% of a typical Florida home's utility bill.",
@@ -404,17 +372,6 @@ export const pages: PageDoc[] = [
         ["3 to 4 People", "50-Gallon High-Recovery", "62 to 67 Gallons", "Standard 3-bedroom slab homes in Florida Ridge & West Vero"],
         ["5+ People or Soaking Tub", "80-Gallon or Hybrid Heat Pump", "80 to 90 Gallons", "Larger barrier island homes with garden tubs & multi-showers"],
         ["High Demand / Compact Space", "Tankless On-Demand Unit", "Continuous (7-11 GPM)", "Luxury master suites, zero lot-line properties, continuous hot water"],
-      ],
-    },
-    pricingTable: {
-      caption: "Turnkey Replacement Pricing in Indian River County",
-      headers: ["Equipment Tier", "Typical Price Range", "Key Specifications Included", "Warranty Coverage"],
-      rows: [
-        ["Standard 40-Gal Electric", "$1,450 – $1,850", "Dual 4500W incoloy elements, expansion tank, pan, permit", "6-Yr Tank / 1-Yr Labor"],
-        ["Standard 50-Gal Electric", "$1,650 – $2,100", "High-recovery elements, brass ball valve, full code upgrade", "6-Yr Tank / 1-Yr Labor"],
-        ["Premium 50-Gal Electric (10-Yr)", "$1,950 – $2,450", "Dual heavy magnesium anode rods, brass drain valve, 10-yr tank", "10-Yr Tank / 2-Yr Labor"],
-        ["Standard 40/50-Gal Atmospheric Gas", "$1,850 – $2,650", "New gas flex line, flue vent test, sediment trap, permit", "6-Yr Tank / 1-Yr Labor"],
-        ["Hybrid Electric Heat Pump (50/65G)", "$2,950 – $4,200", "Up to 75% energy savings, condensate drain line, FPL rebates", "10-Yr Tank / 2-Yr Labor"],
       ],
     },
     cardsTitle: "What Comes Standard With Every Copperlane Installation",
@@ -451,7 +408,7 @@ export const pages: PageDoc[] = [
     lede: "Enjoy unlimited continuous hot water and free up valuable garage or closet square footage with high-efficiency gas and electric tankless water heaters.",
     image: "/images/tankless-unit.jpg",
     imageAlt: "Wall-mounted high-efficiency tankless water heater",
-    answerBox: "Tankless water heaters in Vero Beach provide continuous on-demand hot water without storage heat loss, operating at 90%+ thermal efficiency. Due to Indian River County's 15+ grains per gallon water hardness, tankless heat exchangers require annual descaling flushes to clear calcium scale and maintain efficiency. Conversions range from $2,800 to $4,600.",
+    answerBox: "Tankless water heaters in Vero Beach provide continuous on-demand hot water without storage heat loss, operating at 90%+ thermal efficiency. Due to Indian River County's 15+ grains per gallon water hardness, tankless heat exchangers require annual descaling flushes to clear calcium scale and maintain efficiency.",
     introTitle: "Is Tankless the Right Fit for Your Vero Beach Home?",
     paragraphs: [
       "Tankless water heaters—often called on-demand water heaters—heat water only when a hot fixture is opened. By eliminating the standby energy losses of keeping 50 gallons of water hot 24 hours a day, modern condensing tankless systems can reduce water heating costs by 30% to 50%.",
@@ -475,16 +432,6 @@ export const pages: PageDoc[] = [
         ["Space Footprint", "Approx 9–12 sq ft floor area", "Zero floor space (wall-mounted)", "Zero floor space (compact box)"],
         ["Flood Risk Potential", "High (40-50 gallons of stored water)", "Negligible (no storage tank)", "Negligible (no storage tank)"],
         ["Annual Maintenance", "Tank sediment flush every 1-2 yrs", "Annual chemical descaling flush", "Annual filter & scale clean"],
-      ],
-    },
-    pricingTable: {
-      caption: "Vero Beach Tankless Service & Installation Costs",
-      headers: ["Service Description", "Price Range", "Scope of Work", "Warranty"],
-      rows: [
-        ["Annual Tankless Descaling Flush", "$190 – $290", "Isolation valve hookup, 45-min acid recirc, filter screen clean", "30-Day Guarantee"],
-        ["Diagnostic & Sensor Repair", "$220 – $380", "Error code retrieval, flame sensor clean, water valve swap", "1-Yr Parts & Labor"],
-        ["Gas Tankless Direct Replacement", "$2,400 – $3,400", "Swap existing tankless for new condensing unit, vent connect", "15-Yr Exchanger / 1-Yr Labor"],
-        ["Full Tank-to-Tankless Conversion", "$3,200 – $4,600", "Gas line sizing upgrade, direct vent run, isolation valves, permit", "15-Yr Exchanger / 2-Yr Labor"],
       ],
     },
     cardsTitle: "Tankless Services Provided in Indian River County",
@@ -541,16 +488,6 @@ export const pages: PageDoc[] = [
         ["Oslo Road / 43rd Ave Corridor", "Older gate shutoff valve on copper feed", "Seized gate valve during active emergency", "Quarter-turn commercial brass ball valve"],
         ["Interior Laundry Closets", "Water heater sharing space with washer", "Drywall saturation before leak is spotted", "Aluminum drain pan with dedicated PVC exterior line"],
         ["Closed Water Meter Loops", "Direct line from county meter with backflow", "Pressure spikes splitting tank bottom seam", "Pre-charged ASME thermal expansion tank"],
-      ],
-    },
-    pricingTable: {
-      caption: "Florida Ridge Service & Replacement Rates",
-      headers: ["Service Level", "Estimated Cost", "What's Included", "Local Permitting"],
-      rows: [
-        ["Emergency Leak Service & Valve Repair", "$190 – $340", "Fitting replacement, drain cock swap, pressure test", "No permit required"],
-        ["Element & Thermostat Overhaul", "$240 – $380", "Upper/lower elements, dual thermostats, tank flush", "No permit required"],
-        ["Turnkey 40-Gal Electric Replacement", "$1,450 – $1,850", "New tank, expansion tank, brass valve, haul-away", "Indian River County permit included"],
-        ["Turnkey 50-Gal Electric Replacement", "$1,650 – $2,150", "High-recovery tank, pan, expansion tank, haul-away", "Indian River County permit included"],
       ],
     },
     cardsTitle: "Common Florida Ridge Water Heater Calls",
@@ -610,16 +547,6 @@ export const pages: PageDoc[] = [
         ["Townhome Communities", "Compact 40-Gallon Electric Tank", "Dielectric fitting corrosion from high pressure", "Stainless braided flex lines with dielectric isolators"],
       ],
     },
-    pricingTable: {
-      caption: "West Vero Corridor Service Rates",
-      headers: ["Service Description", "Price Range", "Work Performed", "Permit Included"],
-      rows: [
-        ["T&P Valve & Expansion Tank Install", "$280 – $440", "New ASME expansion tank, pressure test, safety valve", "No permit needed"],
-        ["Dual Element & Thermostat Service", "$240 – $380", "Upper/lower elements replaced, thermostats tuned", "No permit needed"],
-        ["50-Gallon Electric Tank Replacement", "$1,650 – $2,150", "New unit, expansion tank, pan, ball valve, haul-away", "Indian River County permit"],
-        ["Hybrid Heat Pump Replacement", "$2,950 – $4,200", "Tier-1 heat pump, condensate pump, permit, FPL rebate", "Indian River County permit"],
-      ],
-    },
     cardsTitle: "Frequent Service Situations in West Vero Corridor",
     cardsIntro: "Common calls we respond to throughout the 32966 postal zone.",
     cards: [
@@ -658,7 +585,7 @@ export const pages: PageDoc[] = [
       "Gifford is an established mainland community positioned directly north of Vero Beach, spanning between US Highway 1 and 43rd Avenue in ZIP code 32967. Home styles in Gifford range from classic single-family mid-century ranch homes to modern infill builds and properties with generous quarter-acre and half-acre parcels.",
       "Because Gifford properties frequently include detached workshops, secondary living suites, or exterior utility rooms, water heater installations vary widely. Our technicians routinely service both primary household water heaters and secondary auxiliary units located in enclosed utility sheds or carports.",
       "A common issue in Gifford is long horizontal pipe runs from exterior utility closets to indoor bathrooms. When pipes are exposed to outdoor temperature swings or uninsulated, heat loss is significant. Additionally, properties operating on private shallow wells or older municipal feeds experience heavy iron and calcium sedimentation, requiring heavy-duty resistored heating elements and durable brass drain valves.",
-      "If water is leaking onto your utility room floor or your shower will not produce hot water, Copperlane provides prompt, honest on-site evaluations with guaranteed pricing.",
+      "If water is leaking onto your utility room floor or your shower will not produce hot water, Copperlane provides prompt, honest on-site evaluations and upfront quotes before any work begins.",
     ],
     bullets: [
       "Dedicated north mainland coverage across Gifford (ZIP 32967)",
@@ -674,16 +601,6 @@ export const pages: PageDoc[] = [
         ["Older Mid-Century CBS Homes", "Original galvanized pipe nipples", "Galvanic corrosion rusting out tank bung", "Install dielectric brass unions + stainless flex"],
         ["Private Well Water Systems", "Shallow aquifer mineral water", "Anode rod eaten away in under 3 years", "Install powered titanium or dual magnesium anodes"],
         ["Dual Tank Properties", "Separate water heaters for home & shed", "Stuck shutoff valve on secondary line", "Install individual ball valve isolation on both tanks"],
-      ],
-    },
-    pricingTable: {
-      caption: "Gifford Service & Replacement Pricing",
-      headers: ["Job Scope", "Price Range", "Components Included", "Permit Status"],
-      rows: [
-        ["Drain Valve & Fitting Leak Repair", "$180 – $320", "Brass ball valve, dielectric unions, system flush", "No permit required"],
-        ["Heating Element & Thermostat Swap", "$230 – $360", "Lower/upper elements, dual thermostats, test run", "No permit required"],
-        ["Turnkey 40-Gal Electric Replacement", "$1,450 – $1,850", "New Rheem tank, expansion tank, pan, haul-away", "Indian River County permit"],
-        ["Turnkey 50-Gal Electric Replacement", "$1,650 – $2,150", "High-recovery unit, code upgrades, haul-away", "Indian River County permit"],
       ],
     },
     cardsTitle: "Gifford Service Scenarios We Address",
@@ -742,16 +659,6 @@ export const pages: PageDoc[] = [
         ["Coastal Humidity", "Condensation on cold tank jackets", "Surface moisture mimicking leak", "Thermal imaging check to verify seam integrity"],
       ],
     },
-    pricingTable: {
-      caption: "Wabasso Water Heater Service Pricing",
-      headers: ["Service", "Price Range", "Inclusions", "Permit Status"],
-      rows: [
-        ["Anode Rod Replacement & Tank Deodorization", "$220 – $360", "New aluminum-zinc anode, chlorination flush, test", "No permit needed"],
-        ["Heating Element & Thermostat Overhaul", "$240 – $380", "Dual incoloy elements, surface thermostats, test", "No permit needed"],
-        ["40-Gal Electric Storage Replacement", "$1,450 – $1,850", "New tank, expansion tank, brass valve, haul-away", "Indian River County permit"],
-        ["50-Gal Electric Storage Replacement", "$1,650 – $2,150", "High-recovery unit, pan, expansion tank, haul-away", "Indian River County permit"],
-      ],
-    },
     cardsTitle: "Common Wabasso Service Requests",
     cardsIntro: "We frequently resolve these issues for Wabasso homeowners.",
     cards: [
@@ -806,16 +713,6 @@ export const pages: PageDoc[] = [
         ["Interior Second-Floor Chases", "Water penetration through ceilings & floors", "Standard pan with no drain line", "Install auto-shutoff sensor valve + piped pan"],
         ["Multi-Bathroom Luxury Demand", "Simultaneous showers depleting tank", "Undersized standard 40-gallon tank", "Install 80-gallon high-recovery or dual tankless"],
         ["Narrow Closet Clearances", "Replacement tank won't clear doorway", "Forcing incorrect dimensions", "Precision dimensional survey before delivery"],
-      ],
-    },
-    pricingTable: {
-      caption: "South Beach & Barrier Island Service Pricing",
-      headers: ["Installation Type", "Price Range", "Coastal Specifications", "Warranty Protection"],
-      rows: [
-        ["Corrosion Overhaul & Fitting Reseal", "$280 – $460", "Replace corroded nipples with brass, new flex lines", "1-Year Parts & Labor"],
-        ["Premium 50-Gal Electric Replacement", "$1,850 – $2,450", "Expansion tank, auto-shutoff valve, pan, permit", "10-Yr Tank / 2-Yr Labor"],
-        ["Premium 80-Gal High-Recovery Unit", "$2,450 – $3,200", "Commercial recovery elements, dual anode rods, permit", "10-Yr Tank / 2-Yr Labor"],
-        ["High-Efficiency Gas Tankless Retrofit", "$3,400 – $4,800", "Navien/Rinnai unit, direct vent, isolation valves", "15-Yr Exchanger / 2-Yr Labor"],
       ],
     },
     cardsTitle: "Barrier Island Situations We Specialize In",
@@ -896,7 +793,7 @@ export const pages: PageDoc[] = [
     lede: "Direct, authoritative answers to the most common water heater emergency, diagnostic, and replacement questions asked by Indian River County homeowners.",
     image: "/images/drywall-stain.jpg",
     imageAlt: "Water stain on drywall from leaking water heater",
-    answerBox: "This comprehensive FAQ covers emergency shutoff procedures, troubleshooting cold water and leaking tanks, understanding repair versus replacement costs in Vero Beach, and navigating Indian River County building code requirements. For active leaks, call dispatch directly at (772) 555-0140.",
+    answerBox: "This comprehensive FAQ covers emergency shutoff procedures, troubleshooting cold water and leaking tanks, understanding repair versus replacement in Vero Beach, and navigating Indian River County building code requirements. For active leaks, call dispatch directly at (772) 555-0140.",
     introTitle: "Direct Answers for Urgent Water Heater Situations",
     paragraphs: [
       "When a water heater begins leaking or hot water suddenly vanishes, homeowners need immediate, factual answers. Below, our master technicians have compiled clear answers to the questions we hear most frequently on our Vero Beach dispatch line.",
@@ -904,7 +801,7 @@ export const pages: PageDoc[] = [
     ],
     bullets: [
       "Emergency leak containment steps explained clearly",
-      "Cost breakdown of repairs versus replacements in Vero Beach",
+      "Repair versus replacement guidelines",
       "Explanation of why water heaters fail faster in Florida",
       "Indian River County permit and expansion tank requirements",
     ],
@@ -914,14 +811,14 @@ export const pages: PageDoc[] = [
       { title: "Emergency Leak Containment", text: "How to shut off the water supply, electrical power, and prevent ceiling collapses." },
       { title: "No Hot Water Troubleshooting", text: "Diagnosing tripped breakers, red reset buttons, heating elements, and gas pilots." },
       { title: "Repair vs. Replacement", text: "How to know whether your unit is worth repairing or if replacement is necessary." },
-      { title: "Costs & Permitting", text: "Transparent pricing expectations and Indian River County Building Division rules." },
+      { title: "Quotes & Permitting", text: "Approved quotes before work begins and Indian River County Building Division rules." },
     ],
     stepsTitle: "Emergency 4-Step Checklist",
     steps: standardSteps,
     faqs: [
       { q: "What should I do immediately if my water heater is leaking?", a: "1) Close the cold-water shutoff valve on top of the tank (turn clockwise). If seized, turn off the main water shutoff valve to your house. 2) Switch off the double-pole 30-amp breaker labeled 'Water Heater' in your electrical panel. 3) Open a hot water faucet in a bathtub to relieve pressure. 4) Call Copperlane at (772) 555-0140." },
       { q: "How long do water heaters typically last in Vero Beach, FL?", a: "In Vero Beach, storage water heaters typically last 6 to 8 years. High calcium mineral content (15+ GPG) in local municipal water and high ambient heat in unconditioned garages accelerate sediment accumulation and anode rod depletion, reducing lifespan compared to the 10-12 year national average." },
-      { q: "How much does it cost to replace a water heater in Vero Beach?", a: "Turnkey residential water heater replacement in Indian River County ranges from $1,450 to $2,650 depending on capacity (40, 50, or 80-gallon), fuel type (electric or gas), and required code upgrades (thermal expansion tank, brass valves, and building permit fees)." },
+      { q: "Will I get a price on the phone?", a: "We quote after hearing the tank type, access, and whether water is still spreading. You approve that price before we start. This site does not publish flat-rate pricing." },
       { q: "Can I patch a hole in a leaking water heater tank?", a: "No. Water heaters are pressurized steel vessels lined with porcelain enamel. Once the steel shell rusts through, patching or welding is structurally impossible and creates a catastrophic rupture hazard. The tank must be replaced." },
       { q: "Why is water dripping from the pipe on the side of my tank?", a: "That is the Temperature and Pressure (T&P) relief valve discharge pipe. It drips when tank water temperature exceeds 210°F or water pressure exceeds 150 PSI. It usually indicates high street water pressure or a failed thermal expansion tank. Never cap or plug this pipe." },
       { q: "Do I need a building permit to replace a water heater in Indian River County?", a: "Yes. The Florida Building Code requires permits and inspections for water heater replacements. Copperlane handles all required Indian River County permitting to protect your home's legal standing and insurance coverage." },
@@ -1062,7 +959,7 @@ export const pages: PageDoc[] = [
       ],
     },
     cardsTitle: "Communities We Serve",
-    cardsIntro: "Select your neighborhood below for specific plumbing details, common failure modes, and local service pricing.",
+    cardsIntro: "Select your neighborhood below for specific plumbing details, common failure modes, and local service information.",
     cards: [
       { title: "Florida Ridge (32962, 32968)", text: "South of Vero Beach. Specializing in garage slab water heater leak containment and rapid replacement for CBS ranch homes.", href: "/florida-ridge/", image: "/images/street-inland.jpg" },
       { title: "West Vero Corridor (32966)", text: "Inland master-planned communities along SR 60. Sizing 50-gallon high-recovery electric and energy-saving hybrid heat pump units.", href: "/west-vero-corridor/", image: "/images/florida-home.jpg" },

@@ -18,7 +18,6 @@ export const site = {
   zips: ["32960", "32962", "32963", "32966", "32967", "32968"],
   openingHours: "Mo-Su 00:00-24:00",
   hoursDescription: "24/7 Emergency Dispatch Available",
-  priceRange: "$$",
   avgResponseTime: "45 Minutes",
 };
 
