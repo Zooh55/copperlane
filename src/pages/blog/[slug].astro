@@ -1,55 +1,156 @@
 ---
 import Base from "../../layouts/Base.astro";
-import { posts } from "../../data/posts";
+import CallBand from "../../components/CallBand.astro";
+import { posts, type Post } from "../../data/posts";
+import { site } from "../../data/site";
 
 export function getStaticPaths() {
   return posts.map((post) => ({ params: { slug: post.slug }, props: { post } }));
 }
-const { post } = Astro.props;
-const schema = {
-  "@context": "https://schema.org",
+
+const { post } = Astro.props as { post: Post };
+const related = posts.filter((item) => item.slug !== post.slug).slice(0, 3);
+const prettyDate = new Date(`${post.date}T12:00:00`).toLocaleDateString("en-US", {
+  month: "long",
+  day: "numeric",
+  year: "numeric",
+});
+
+const articleUrl = `https://waterheaterleakingverobeachfl.com/blog/${post.slug}/`;
+
+const blogSchema = {
   "@type": "BlogPosting",
+  "@id": `${articleUrl}#article`,
   headline: post.title,
   description: post.description,
   datePublished: post.date,
-  image: `https://waterheaterleakingverobeachfl.com${post.image}`,
-  mainEntityOfPage: `https://waterheaterleakingverobeachfl.com/blog/${post.slug}/`,
+  dateModified: "2026-03-15T08:00:00-04:00",
+  mainEntityOfPage: articleUrl,
+  author: {
+    "@type": "Organization",
+    name: "Copperlane Water Heater Technical Team",
+    url: site.domain,
+  },
+  publisher: {
+    "@id": `${site.domain}/#business`,
+  },
+  inLanguage: "en-US",
+};
+
+const faqSchema = {
+  "@type": "FAQPage",
+  "@id": `${articleUrl}#faq`,
+  mainEntity: post.faqs.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: f.a,
+    },
+  })),
 };
 ---
-<Base title={`${post.title} | Copperlane`} description={post.description} path={`/blog/${post.slug}/`}>
-  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+<Base
+  title={`${post.title} | Copperlane`}
+  description={post.description}
+  path={`/blog/${post.slug}/`}
+  type="article"
+  publishedTime={post.date}
+  modifiedTime="2026-03-15T08:00:00-04:00"
+  extraSchema={[blogSchema, faqSchema]}
+>
   <article>
-    <header class="bg-ink text-white">
-      <div class="max-w-3xl mx-auto px-4 py-14">
-        <p class="hero-kicker"><a href="/blog/" class="text-secondary">Blog</a></p>
-        <h1 class="hero-title">{post.title}</h1>
-        <p class="mt-3 text-white/60">{post.date}</p>
+    <!-- Header Hero with Background Photo -->
+    <header class="page-hero">
+      <img src={post.image} alt={post.imageAlt} class="page-hero-photo" />
+      <div class="page-hero-shade" aria-hidden="true"></div>
+      <div class="relative max-w-7xl mx-auto px-4 py-16 md:py-24 w-full">
+        <nav class="breadcrumb-nav mb-3" aria-label="Breadcrumb">
+          <a href="/">Home</a>
+          <span class="breadcrumb-separator">/</span>
+          <a href="/blog/">Guides</a>
+          <span class="breadcrumb-separator">/</span>
+          <span class="text-secondary font-semibold">Article</span>
+        </nav>
+        <p class="hero-kicker"><a href="/blog/" class="hover:text-white">Guides</a></p>
+        <h1 class="hero-title text-white">{post.title}</h1>
+        <p class="mt-4 text-white/75">{prettyDate} · Vero Beach, FL</p>
       </div>
     </header>
-    <img src={post.image} alt={post.imageAlt} class="w-full max-h-[420px] object-cover" />
-    <div class="max-w-3xl mx-auto px-4 py-12 prose-blog">
-      <h2 class="font-heading text-2xl font-bold mb-3">Key takeaways</h2>
-      <ul class="list-disc pl-5 mb-8 space-y-2 text-gray-700">
-        {post.takeaways.map((item) => <li>{item}</li>)}
-      </ul>
-      {post.sections.map((block) => (
-        <section class="mb-8">
-          <h2 class="font-heading text-2xl font-bold mb-3">{block.h}</h2>
-          <div class="text-lg text-gray-700 leading-relaxed space-y-3 [&_a]:text-primary [&_a]:font-semibold [&_table]:w-full [&_table]:text-base [&_td]:border-b [&_td]:border-stone-200 [&_td]:py-2 [&_th]:text-left [&_th]:py-2" set:html={block.html} />
-        </section>
-      ))}
-      <p class="my-8"><a href="tel:7725550140" class="inline-block bg-primary text-white font-bold py-3 px-6 rounded-full">Call (772) 555-0140</a></p>
-      <h2 class="font-heading text-2xl font-bold mb-3">Questions</h2>
-      {post.faqs.map((f) => (
-        <details class="border-b border-stone-200 py-3">
-          <summary class="font-semibold cursor-pointer">{f.q}</summary>
-          <p class="text-gray-600 mt-2">{f.a}</p>
-        </details>
-      ))}
-      <h2 class="font-heading text-2xl font-bold mt-10 mb-3">Sources</h2>
-      <ul class="list-disc pl-5 space-y-2">
-        {post.sources.map((s) => <li><a href={s.href} class="text-primary font-semibold">{s.label}</a></li>)}
-      </ul>
+
+    <div class="max-w-6xl mx-auto px-4 py-12 md:py-16 article-shell">
+      <div class="prose-blog text-lg text-gray-700 leading-relaxed">
+        <div class="takeaways mb-10">
+          <p class="text-xs font-extrabold tracking-[0.16em] uppercase text-primary mb-2">Key takeaways</p>
+          <ul class="list-disc pl-5 text-base text-ink">
+            {post.takeaways.map((item) => <li>{item}</li>)}
+          </ul>
+        </div>
+
+        {post.sections.map((block) => (
+          <section class="mb-10">
+            <h2>{block.h}</h2>
+            <div set:html={block.html} />
+          </section>
+        ))}
+
+        <div class="my-10 side-card rounded-2xl p-6 not-prose">
+          <p class="font-heading text-2xl font-black text-dark">Water on the floor?</p>
+          <p class="text-gray-600 mt-2 mb-4">Call with the street and the fuel type. You approve the price before we start.</p>
+          <a href={site.phoneTel} class="inline-block bg-primary hover:bg-primary-dark text-white font-extrabold uppercase tracking-wide py-3 px-6 rounded-md shadow-md transition-colors">Call {site.phone}</a>
+        </div>
+
+        <h2>Questions</h2>
+        <div class="border-t border-stone-200 not-prose mb-10">
+          {post.faqs.map((f) => (
+            <details class="border-b border-stone-200 py-4">
+              <summary class="font-heading font-bold cursor-pointer text-dark">{f.q}</summary>
+              <p class="text-gray-600 mt-2 leading-relaxed">{f.a}</p>
+            </details>
+          ))}
+        </div>
+
+        <h2>Sources</h2>
+        <ul class="text-base space-y-2 not-prose">
+          {post.sources.map((s) => <li><a href={s.href} class="text-primary font-semibold hover:underline">{s.label}</a></li>)}
+        </ul>
+      </div>
+
+      <aside class="article-side">
+        <div class="side-card rounded-2xl p-6">
+          <p class="text-xs font-extrabold tracking-[0.16em] uppercase text-primary mb-2">Need this looked at</p>
+          <p class="font-heading text-2xl font-black text-dark leading-tight">We come to the heater.</p>
+          <p class="text-gray-600 text-sm mt-2 mb-4">Street, ZIP, gas or electric. You approve the price before we start.</p>
+          <a href={site.phoneTel} class="block text-center bg-primary hover:bg-primary-dark text-white font-extrabold uppercase tracking-wide py-3 rounded-md shadow transition-colors">{site.phone}</a>
+        </div>
+        <div class="mt-6">
+          <p class="text-xs font-extrabold tracking-[0.16em] uppercase text-gray-400 mb-3">More guides</p>
+          <ul class="space-y-3">
+            {related.map((item) => (
+              <li>
+                <a href={`/blog/${item.slug}/`} class="font-semibold text-dark hover:text-primary leading-snug">{item.title}</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </aside>
     </div>
+
+    <!-- More From the Guides with Photos -->
+    <section class="bg-foam py-14">
+      <div class="max-w-6xl mx-auto px-4">
+        <h2 class="font-heading text-2xl font-black mb-6 text-dark">More from the guides</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+          {related.map((item) => (
+            <a href={`/blog/${item.slug}/`} class="bg-white rounded-2xl overflow-hidden card-hover block shadow-sm">
+              <img src={item.image} alt={item.imageAlt} class="h-40 w-full object-cover" />
+              <span class="block p-4 font-heading font-bold leading-snug text-dark">{item.title}</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <CallBand title="Want this heater looked at?" text="Have the street ready. You approve the price before we start." />
   </article>
 </Base>

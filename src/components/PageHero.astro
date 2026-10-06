@@ -6,22 +6,47 @@ interface Props {
   description: string;
   image?: string;
   imageAlt?: string;
+  breadcrumbs?: { label: string; href?: string }[];
 }
-const { eyebrow = "Vero Beach, Florida", title, description, image = "/images/hero.jpg", imageAlt = "Leaking water heater in a Vero Beach garage" } = Astro.props;
+const {
+  eyebrow = "Vero Beach, Florida",
+  title,
+  description,
+  image = "/images/hero.jpg",
+  imageAlt = "Leaking water heater in a Vero Beach garage",
+  breadcrumbs,
+} = Astro.props;
 ---
 <section class="page-hero">
   <img src={image} alt={imageAlt} class="page-hero-photo" />
   <div class="page-hero-shade" aria-hidden="true"></div>
-  <div class="relative max-w-7xl mx-auto px-4 py-14 md:py-20">
-    <div class="max-w-xl">
+  <div class="relative max-w-7xl mx-auto px-4 py-16 md:py-20 w-full">
+    {breadcrumbs && (
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+        <a href="/">Home</a>
+        {breadcrumbs.map((b) => (
+          <>
+            <span class="breadcrumb-separator">/</span>
+            {b.href ? (
+              <a href={b.href}>{b.label}</a>
+            ) : (
+              <span class="text-secondary font-semibold">{b.label}</span>
+            )}
+          </>
+        ))}
+      </nav>
+    )}
+    <div class="max-w-2xl">
       <p class="hero-kicker">{eyebrow}</p>
       <h1 class="hero-title text-white">{title}</h1>
-      <p class="mt-4 text-base md:text-lg text-white/80 leading-relaxed">{description}</p>
-      <div class="mt-6 flex flex-wrap gap-3">
-        <a href={site.phoneTel} class="hero-call">Call {site.phone}</a>
-        <a href="/contact/" class="hero-estimate">Free estimate</a>
+      <p class="mt-4 text-base md:text-lg text-white/85 leading-relaxed max-w-xl">{description}</p>
+      <div class="mt-7 flex flex-col sm:flex-row gap-3">
+        <a href="/contact/" class="hero-call">Get a free estimate</a>
+        <a href={site.phoneTel} class="hero-estimate">Call {site.phone}</a>
       </div>
+      <p class="mt-4 text-white font-semibold text-sm">
+        Need help now? <a href={site.phoneTel} class="underline decoration-white/40 underline-offset-4">Call {site.phone}</a>
+      </p>
     </div>
   </div>
-  <div class="urgency-stripe h-1.5 relative"></div>
 </section>

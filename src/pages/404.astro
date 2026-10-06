@@ -1,10 +1,41 @@
 ---
 import Base from "../layouts/Base.astro";
-import { site } from "../data/site";
+import { site, services } from "../data/site";
 ---
-<Base title="Page not found | Copperlane" description="That page is not on the Copperlane site." path="/404/">
-  <section class="py-24 px-4 text-center">
-    <h1 class="font-heading text-4xl font-bold mb-4">That page is not on this site.</h1>
-    <p class="mb-6"><a href="/" class="text-primary font-bold">Go to the Vero Beach water heater page</a> or call <a href={site.phoneTel}>{site.phone}</a>.</p>
+<Base
+  title="Page Not Found | Copperlane Water Heater Specialists"
+  description="The requested page could not be found. Return to Copperlane Water Heater Specialists homepage or call dispatch at (772) 555-0140."
+  path="/404/"
+>
+  <section class="py-24 px-4 text-center max-w-2xl mx-auto">
+    <span class="emergency-badge mb-3">404 Error</span>
+    <h1 class="font-heading text-4xl md:text-5xl font-black text-dark mb-4">
+      Page Not Found
+    </h1>
+    <p class="text-slate-600 text-lg mb-8 leading-relaxed">
+      The water heater page you are looking for may have moved or no longer exists. If you have an active leak or need service, please call our 24/7 dispatch line.
+    </p>
+
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
+      <a href="/" class="hero-call text-sm">
+        Return to Homepage
+      </a>
+      <a href={site.phoneTel} class="hero-estimate !text-slate-800 !border-slate-300 hover:!border-primary text-sm">
+        Call Dispatch: {site.phone}
+      </a>
+    </div>
+
+    <div class="border-t border-slate-200 pt-8 text-left">
+      <p class="text-xs font-black uppercase tracking-wider text-slate-400 mb-4 text-center">
+        Or Browse Direct Services:
+      </p>
+      <div class="grid grid-cols-2 gap-2 text-sm text-center">
+        {services.map((s) => (
+          <a href={s.href} class="text-primary hover:underline font-semibold py-1">
+            {s.label}
+          </a>
+        ))}
+      </div>
+    </div>
   </section>
 </Base>

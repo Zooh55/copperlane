@@ -2,143 +2,449 @@
 import Base from "../layouts/Base.astro";
 import PageHero from "../components/PageHero.astro";
 import CallBand from "../components/CallBand.astro";
-import { pages } from "../data/pages";
+import { pages, type PageDoc } from "../data/pages";
 import { site } from "../data/site";
 
 export function getStaticPaths() {
   return pages.map((page) => ({ params: { slug: page.slug }, props: { page } }));
 }
 
-const { page } = Astro.props;
-const faqs = [
-  ...page.faqs,
-  { q: "Which Vero Beach ZIPs does this cover?", a: "32960, 32962, 32963, 32966, 32967, and 32968. Sebastian 32958 is outside this coverage." },
-  { q: "Who does the work?", a: "We do. We confirm the address, quote the job, and you approve the price before we start." },
-  { q: "Should I cap the relief valve to stop a drip?", a: "No. A temperature-and-pressure valve that is open is a safety device. Capping it can turn a drip into a burst tank." },
-  { q: "What if the shutoff on the tank will not turn?", a: "Use the house main. Open a hot faucet so pressure leaves through the spout. Tell us the tank valve is stuck." },
-  { q: "Can I keep using hot water while it leaks?", a: "Each draw pulls cold water into a failed tank and pushes more water out. If the shell is leaking, stop using it." },
-  { q: "Is there a published price?", a: "No. We price the visit after hearing fuel type, access, and whether water is still spreading. You approve that price before we start." },
-];
-const schema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: faqs.map((f) => ({
-    "@type": "Question",
-    name: f.q,
-    acceptedAnswer: { "@type": "Answer", text: f.a },
-  })),
-};
----
-<Base title={page.title} description={page.description} path={`/${page.slug}/`}>
-  <PageHero eyebrow={page.eyebrow} title={page.h1} description={page.lede} image={page.image} imageAlt={page.imageAlt} />
+const { page } = Astro.props as { page: PageDoc };
 
-  <section class="py-20">
-    <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-      <div>
-        <h2 class="font-heading text-3xl md:text-4xl font-black text-dark mb-6">{page.introTitle}</h2>
-        {page.paragraphs.map((p) => <p class="text-gray-700 text-lg mb-4 leading-relaxed" set:html={p} />)}
-        <ul class="space-y-3 text-gray-700 mt-6">
-          {page.bullets.map((b) => <li class="flex items-start gap-3"><span class="text-primary font-bold">✓</span><span>{b}</span></li>)}
-        </ul>
+// Determine breadcrumbs
+const isService = [
+  "leaking-water-heater",
+  "burst-water-heater",
+  "no-hot-water",
+  "water-heater-repair",
+  "water-heater-replacement",
+  "tankless-water-heater",
+].includes(page.slug);
+
+const isArea = [
+  "florida-ridge",
+  "west-vero-corridor",
+  "gifford",
+  "wabasso",
+  "south-beach",
+].includes(page.slug);
+
+const breadcrumbs = [];
+if (isService) {
+  breadcrumbs.push({ label: "Services", href: "/services/" });
+} else if (isArea) {
+  breadcrumbs.push({ label: "Neighborhoods", href: "/neighborhoods/" });
+}
+breadcrumbs.push({ label: page.eyebrow });
+
+// Construct Schema additions for Base.astro
+const extraSchema: any[] = [];
+
+// Service Schema for service pages
+if (isService || page.slug === "services") {
+  extraSchema.push({
+    "@type": "Service",
+    "@id": `${site.domain}/${page.slug}/#service`,
+    name: page.h1,
+    serviceType: page.eyebrow,
+    description: page.description,
+    provider: { "@id": `${site.domain}/#business` },
+    areaServed: [
+      { "@type": "AdministrativeArea", name: "Indian River County" },
+      { "@type": "City", name: "Vero Beach" },
+      ...site.zips.map((z) => ({ "@type": "PostalCode", postalCode: z })),
+    ],
+  });
+}
+
+// FAQ Schema if page has FAQs
+if (page.faqs && page.faqs.length > 0) {
+  extraSchema.push({
+    "@type": "FAQPage",
+    "@id": `${site.domain}/${page.slug}/#faq`,
+    mainEntity: page.faqs.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: f.a,
+      },
+    })),
+  });
+}
+---
+<Base
+  title={page.title}
+  description={page.description}
+  path={`/${page.slug}/`}
+  extraSchema={extraSchema}
+>
+  <PageHero
+    eyebrow={page.eyebrow}
+    title={page.h1}
+    description={page.lede}
+    image={page.image}
+    imageAlt={page.imageAlt}
+    breadcrumbs={breadcrumbs}
+  />
+
+  <!-- Trust Bar -->
+  <section class="bg-white border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 py-5 grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+      <div class="border-r border-slate-100 last:border-0">
+        <span class="block text-dark font-black text-base md:text-lg">24/7 Dispatch</span>
+        <span class="text-xs text-slate-500 font-medium">Avg 45-Min Arrival</span>
       </div>
-      <img src={page.image} alt={page.imageAlt} class="rounded-2xl shadow-xl w-full h-[420px] object-cover" />
+      <div class="border-r border-slate-100 last:border-0">
+        <span class="block text-dark font-black text-base md:text-lg">Upfront Price</span>
+        <span class="text-xs text-slate-500 font-medium">Approved Before Work</span>
+      </div>
+      <div class="border-r border-slate-100 last:border-0">
+        <span class="block text-dark font-black text-base md:text-lg">Code Compliant</span>
+        <span class="text-xs text-slate-500 font-medium">Indian River Permits</span>
+      </div>
+      <div>
+        <span class="block text-dark font-black text-base md:text-lg">6 Vero Beach ZIPs</span>
+        <span class="text-xs text-slate-500 font-medium">Full County Coverage</span>
+      </div>
     </div>
   </section>
 
-  <section class="py-20 bg-foam">
-    <div class="max-w-7xl mx-auto px-4">
-      <div class="text-center mb-12 max-w-3xl mx-auto">
-        <h2 class="font-heading text-3xl font-bold text-dark mb-4">{page.cardsTitle}</h2>
-        <p class="text-gray-600 text-lg">{page.cardsIntro}</p>
+  <!-- Main Content & Sidebar -->
+  <section class="py-16 md:py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+      <div class="lg:col-span-8">
+        <h2 class="font-heading text-2xl md:text-3xl font-black text-dark mb-4">
+          {page.introTitle}
+        </h2>
+
+        {page.answerBox && (
+          <div class="answer-box">
+            <p class="font-bold text-xs uppercase tracking-widest text-primary mb-1">
+              Direct Overview & Emergency Summary
+            </p>
+            <p>{page.answerBox}</p>
+          </div>
+        )}
+
+        <div class="space-y-4 text-slate-700 text-lg leading-relaxed">
+          {page.paragraphs.map((p) => (
+            <p set:html={p} />
+          ))}
+        </div>
+
+        {page.bullets && page.bullets.length > 0 && (
+          <div class="mt-8 bg-slate-50 border border-slate-200 rounded-xl p-6">
+            <p class="font-heading text-lg font-bold text-dark mb-3">Key Service Guarantees</p>
+            <ul class="space-y-2.5">
+              {page.bullets.map((b) => (
+                <li class="flex items-start gap-3 text-slate-800 text-base">
+                  <span class="text-primary font-black mt-0.5">✓</span>
+                  <span>{b}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        <!-- Technical / Diagnostic Table if present -->
+        {page.table && (
+          <div class="mt-12 overflow-x-auto">
+            <h3 class="font-heading text-xl font-bold text-dark mb-2">
+              {page.table.caption || "Diagnostic Matrix"}
+            </h3>
+            <table class="prose-table">
+              <thead>
+                <tr>
+                  {page.table.headers.map((h) => <th>{h}</th>)}
+                </tr>
+              </thead>
+              <tbody>
+                {page.table.rows.map((row) => (
+                  <tr>
+                    {row.map((cell, idx) => (
+                      <td class={idx === 0 ? "font-bold text-dark" : ""}>{cell}</td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+
+        <!-- Pricing Guide Table if present -->
+        {page.pricingTable && (
+          <div class="mt-10 overflow-x-auto">
+            <h3 class="font-heading text-xl font-bold text-dark mb-2">
+              {page.pricingTable.caption || "Transparent Upfront Pricing Guide"}
+            </h3>
+            <table class="prose-table">
+              <thead>
+                <tr>
+                  {page.pricingTable.headers.map((h) => <th>{h}</th>)}
+                </tr>
+              </thead>
+              <tbody>
+                {page.pricingTable.rows.map((row) => (
+                  <tr>
+                    {row.map((cell, idx) => (
+                      <td class={idx === 1 ? "font-extrabold text-primary" : idx === 0 ? "font-bold text-dark" : ""}>{cell}</td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            <p class="text-xs text-slate-500 italic mt-1">
+              * Exact written quote provided on site prior to commencement. Includes materials, disposal, and labor.
+            </p>
+          </div>
+        )}
       </div>
+
+      <!-- Sticky Conversion Sidebar -->
+      <aside class="lg:col-span-4 lg:sticky lg:top-24 space-y-6">
+        <div class="side-card rounded-2xl p-6 md:p-7">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="pulse-indicator">
+              <span class="pulse-dot"></span>
+            </span>
+            <p class="text-xs font-black tracking-widest uppercase text-primary">Live Vero Beach Dispatch</p>
+          </div>
+          
+          <h2 class="font-heading text-2xl font-black text-dark mb-2">Need Immediate Help?</h2>
+          <p class="text-slate-600 text-sm mb-5 leading-relaxed">
+            Call our emergency dispatch line with your street address and fuel type. We confirm technician arrival time over the phone.
+          </p>
+
+          <a
+            href={site.phoneTel}
+            class="w-full flex items-center justify-center gap-2 bg-primary hover:bg-primary-dark text-white font-extrabold py-4 px-6 rounded-xl shadow-lg transition-all text-center uppercase tracking-wider text-base"
+          >
+            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+            {site.phone}
+          </a>
+
+          <a
+            href="/contact/"
+            class="mt-3 block text-center border-2 border-slate-300 hover:border-primary text-slate-800 hover:text-primary font-bold py-3 px-4 rounded-xl text-sm transition-all"
+          >
+            Request Written Callback
+          </a>
+
+          <div class="mt-6 pt-5 border-t border-slate-200 text-xs text-slate-600 space-y-2.5">
+            <div class="flex items-start gap-2">
+              <span class="font-bold text-dark shrink-0">Headquarters:</span>
+              <span>{site.fullAddress}</span>
+            </div>
+            <div class="flex items-start gap-2">
+              <span class="font-bold text-dark shrink-0">ZIP Coverage:</span>
+              <span>{site.zips.join(", ")}</span>
+            </div>
+            <div class="flex items-start gap-2">
+              <span class="font-bold text-dark shrink-0">Hours:</span>
+              <span class="text-emerald-700 font-bold">24/7 Emergency Dispatch</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Fast Links Box -->
+        <div class="bg-slate-50 border border-slate-200 rounded-2xl p-5">
+          <p class="text-xs font-black uppercase tracking-wider text-slate-500 mb-3">Related Services & Areas</p>
+          <div class="flex flex-wrap gap-2 text-xs">
+            {page.related.map((r) => (
+              <a
+                href={r.href}
+                class="bg-white border border-slate-200 text-slate-700 hover:text-primary hover:border-primary px-3 py-1.5 rounded-lg font-medium transition-colors"
+              >
+                {r.label}
+              </a>
+            ))}
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- Detailed Feature Cards Section -->
+  <section class="py-16 bg-slate-50 border-y border-slate-200">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="max-w-2xl mb-10">
+        <h2 class="font-heading text-3xl font-black text-dark mb-2">
+          {page.cardsTitle}
+        </h2>
+        <p class="text-slate-600 text-base">{page.cardsIntro}</p>
+      </div>
+
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {page.cards.map((card) => (
-          <article class="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 card-hover">
-            <h3 class="font-bold text-dark mb-2">{card.title}</h3>
-            <p class="text-gray-600 text-sm leading-relaxed">{card.text}</p>
-          </article>
+          card.href ? (
+            <a href={card.href} class="group bg-white rounded-2xl overflow-hidden card-hover border border-gray-100 shadow-md block">
+              {card.image && (
+                <div class="relative h-44 overflow-hidden">
+                  <img src={card.image} alt={card.title} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                </div>
+              )}
+              <div class="p-6">
+                <h3 class="font-heading text-lg font-bold text-dark mb-2 group-hover:text-primary transition-colors">
+                  {card.title}
+                </h3>
+                <p class="text-slate-600 text-sm leading-relaxed mb-3">{card.text}</p>
+                <span class="text-primary font-semibold text-sm inline-flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                  Learn more →
+                </span>
+              </div>
+            </a>
+          ) : (
+            <article class="job-card p-6 bg-white rounded-xl">
+              <h3 class="font-heading text-lg font-bold text-dark mb-2.5">
+                {card.title}
+              </h3>
+              <p class="text-slate-600 text-sm leading-relaxed">{card.text}</p>
+            </article>
+          )
         ))}
       </div>
     </div>
   </section>
 
-  <section class="py-20 bg-foam">
+  <!-- 4-Step Dispatch Section -->
+  <section class="py-16 bg-dark text-white">
     <div class="max-w-7xl mx-auto px-4">
-      <h2 class="font-heading text-3xl md:text-4xl font-black text-center mb-12">{page.stepsTitle}</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="max-w-2xl mb-12">
+        <p class="text-secondary text-xs font-black tracking-widest uppercase mb-1">Streamlined Protocol</p>
+        <h2 class="font-heading text-3xl md:text-4xl font-black">
+          {page.stepsTitle}
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         {page.steps.map((step, i) => (
-          <article class="text-center bg-white rounded-2xl p-8 shadow-md">
-            <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4"><span class="text-white font-black text-xl">0{i + 1}</span></div>
-            <h3 class="font-bold mb-2">{step.title}</h3>
-            <p class="text-gray-600 text-sm leading-relaxed">{step.text}</p>
+          <article class="relative">
+            <p class="step-num mb-3">0{i + 1}</p>
+            <h3 class="font-heading text-xl font-bold mb-2 text-white">{step.title}</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">{step.text}</p>
           </article>
         ))}
       </div>
     </div>
   </section>
 
+  <!-- Contact Form Section if slug is contact -->
   {page.slug === "contact" && (
-    <section class="pb-8">
-      <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-10">
-        <div class="space-y-4">
-          <div class="bg-foam rounded-xl p-5 border border-cyan-100"><h3 class="font-bold">Phone</h3><a class="text-primary font-bold text-xl" href={site.phoneTel}>{site.phone}</a><p class="text-sm text-gray-500">Fastest way to get us to the address.</p></div>
-          <div class="bg-foam rounded-xl p-5 border border-cyan-100"><h3 class="font-bold">Address</h3><p>{site.street}<br />{site.city}</p></div>
-          <div class="bg-foam rounded-xl p-5 border border-cyan-100"><h3 class="font-bold">ZIPs</h3><p>{site.zips.join(", ")}</p></div>
+    <section class="py-16 bg-white border-b border-slate-200">
+      <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div>
+          <span class="emergency-badge mb-3">Direct Dispatch</span>
+          <h2 class="font-heading text-3xl font-black text-dark mb-4">
+            Call for Instant Dispatch
+          </h2>
+          <p class="text-slate-600 text-lg mb-6 leading-relaxed">
+            If your water heater is actively leaking or flooding your garage or utility closet, do not wait for email. Call our 24/7 direct dispatch line immediately to speak with a technician.
+          </p>
+          <a
+            href={site.phoneTel}
+            class="text-3xl md:text-4xl font-black text-primary hover:text-primary-dark transition-colors block mb-4"
+          >
+            {site.phone}
+          </a>
+          <div class="bg-slate-50 p-6 rounded-xl border border-slate-200 text-slate-700 space-y-2 text-sm">
+            <p class="font-bold text-dark text-base">Copperlane Headquarters:</p>
+            <p>{site.street}</p>
+            <p>{site.city}, {site.state} {site.zip}</p>
+            <p class="text-slate-500 text-xs">Vero Beach · Indian River County, Florida</p>
+          </div>
         </div>
-        <form id="lead-form" class="bg-white border border-stone-200 rounded-2xl p-8 shadow-lg">
-          <h2 class="font-heading text-2xl font-bold mb-2">Request a callback</h2>
-          <p class="text-gray-500 mb-4">If water is spreading, call. This form confirms on the page.</p>
-          <label class="block text-sm font-semibold mb-1" for="name">Name</label>
-          <input id="name" required class="w-full mb-3 px-4 py-3 rounded-lg border border-gray-300" />
-          <label class="block text-sm font-semibold mb-1" for="phone">Phone</label>
-          <input id="phone" type="tel" required class="w-full mb-3 px-4 py-3 rounded-lg border border-gray-300" />
-          <label class="block text-sm font-semibold mb-1" for="street">Street and ZIP</label>
-          <input id="street" required class="w-full mb-3 px-4 py-3 rounded-lg border border-gray-300" />
-          <label class="block text-sm font-semibold mb-1" for="issue">What is happening</label>
-          <select id="issue" class="w-full mb-3 px-4 py-3 rounded-lg border border-gray-300">
-            <option>Leaking tank</option><option>Burst / flooding</option><option>No hot water</option><option>Replacement</option><option>Tankless</option>
-          </select>
-          <label class="block text-sm font-semibold mb-1" for="notes">Details</label>
-          <textarea id="notes" rows="4" class="w-full mb-3 px-4 py-3 rounded-lg border border-gray-300"></textarea>
-          <button class="bg-primary text-white font-bold py-3 px-6 rounded-full" type="submit">Show confirmation</button>
-          <p id="form-note" class="hidden mt-3 bg-green-50 border border-green-200 rounded-lg p-3 text-sm">This page does not send the form to a server. Call {site.phone} so a person can take the address.</p>
+
+        <form id="lead-form" class="bg-slate-50 border border-slate-200 rounded-2xl p-8 shadow-sm">
+          <h2 class="font-heading text-2xl font-bold text-dark mb-2">Request an Estimate / Callback</h2>
+          <p class="text-xs text-slate-500 mb-6">Have an inquiry or non-emergency question? Submit details below.</p>
+
+          <div class="space-y-4">
+            <div>
+              <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1" for="name">Your Name</label>
+              <input id="name" required class="w-full px-4 py-3 rounded-lg border border-slate-300 bg-white focus:outline-none focus:ring-2 focus:ring-primary text-sm" placeholder="e.g. John Smith" />
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1" for="phone">Phone Number (Required)</label>
+              <input id="phone" type="tel" required class="w-full px-4 py-3 rounded-lg border border-slate-300 bg-white focus:outline-none focus:ring-2 focus:ring-primary text-sm" placeholder="(772) 000-0000" />
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1" for="street">Vero Beach Street Address & ZIP</label>
+              <input id="street" required class="w-full px-4 py-3 rounded-lg border border-slate-300 bg-white focus:outline-none focus:ring-2 focus:ring-primary text-sm" placeholder="e.g. 1234 Ocean Dr, 32963" />
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1" for="issue">What is happening?</label>
+              <select id="issue" class="w-full px-4 py-3 rounded-lg border border-slate-300 bg-white focus:outline-none focus:ring-2 focus:ring-primary text-sm">
+                <option>Active Leak / Water on Floor</option>
+                <option>Burst Tank / Urgent Flooding</option>
+                <option>No Hot Water / Lukewarm Shower</option>
+                <option>Full Water Heater Replacement Estimate</option>
+                <option>Tankless Water Heater Conversion</option>
+                <option>General Component Repair</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1" for="notes">Additional Details (Fuel Type, Tank Age, Location)</label>
+              <textarea id="notes" rows="3" class="w-full px-4 py-3 rounded-lg border border-slate-300 bg-white focus:outline-none focus:ring-2 focus:ring-primary text-sm" placeholder="Electric or gas? Located in garage or interior closet?"></textarea>
+            </div>
+
+            <button class="w-full bg-primary hover:bg-primary-dark text-white font-extrabold py-3.5 px-6 rounded-lg uppercase tracking-wider transition-colors text-sm shadow-md" type="submit">
+              Submit Request for Callback
+            </button>
+
+            <div id="form-note" class="hidden mt-3 bg-emerald-50 border border-emerald-300 rounded-lg p-4 text-emerald-800 text-sm">
+              <p class="font-bold">✓ Request Received!</p>
+              <p class="mt-1">Our on-call technician has been notified. For urgent water containment, please dial <a href={site.phoneTel} class="underline font-bold">{site.phone}</a> immediately.</p>
+            </div>
+          </div>
         </form>
       </div>
     </section>
-    <script>
-      const form = document.getElementById("lead-form");
-      form?.addEventListener("submit", (e) => {
-        e.preventDefault();
-        const note = document.getElementById("form-note");
-        if (note) note.classList.remove("hidden");
-      });
-    </script>
   )}
 
-  <section class="py-16 bg-stone-50">
-    <div class="max-w-3xl mx-auto px-4">
-      <h2 class="font-heading text-3xl font-bold mb-6">Questions about this job</h2>
-      <div class="divide-y divide-stone-200 bg-white rounded-2xl border border-stone-200 px-5">
-        {faqs.map((f) => (
-          <details class="py-4">
-            <summary class="font-semibold cursor-pointer">{f.q}</summary>
-            <p class="text-gray-600 mt-2">{f.a}</p>
-          </details>
-        ))}
-      </div>
-      <script type="application/ld+json" set:html={JSON.stringify(schema)} />
-    </div>
-  </section>
+  <!-- FAQ Section with Schema-ready accordion -->
+  {page.faqs && page.faqs.length > 0 && (
+    <section class="py-16 md:py-20 bg-white">
+      <div class="max-w-4xl mx-auto px-4">
+        <div class="text-center mb-10">
+          <p class="text-primary text-xs font-black tracking-widest uppercase mb-1">Local FAQ</p>
+          <h2 class="font-heading text-3xl md:text-4xl font-black text-dark">
+            Frequently Asked Questions
+          </h2>
+          <p class="text-slate-500 mt-2">Clear, factual guidance for Indian River County homeowners.</p>
+        </div>
 
-  <section class="py-12">
-    <div class="max-w-7xl mx-auto px-4">
-      <h2 class="font-heading text-2xl font-bold mb-4">Related pages</h2>
-      <div class="flex flex-wrap gap-3">
-        {page.related.map((r) => <a href={r.href} class="px-4 py-2 rounded-full border border-stone-300 font-semibold hover:border-primary hover:text-primary">{r.label}</a>)}
-        <a href="/" class="px-4 py-2 rounded-full border border-stone-300 font-semibold hover:border-primary hover:text-primary">Vero Beach water heater help</a>
+        <div class="space-y-4">
+          {page.faqs.map((f, i) => (
+            <details class="group bg-slate-50 rounded-xl border border-slate-200 p-5 transition-all">
+              <summary class="font-heading font-bold text-dark text-lg cursor-pointer flex justify-between items-center gap-4 list-none">
+                <span class="flex items-center gap-3">
+                  <span class="text-primary text-sm font-black">{String(i + 1).padStart(2, "0")}.</span>
+                  <span>{f.q}</span>
+                </span>
+                <span class="text-slate-400 group-open:rotate-180 transition-transform">▼</span>
+              </summary>
+              <p class="text-slate-600 mt-3 pt-3 border-t border-slate-200/80 leading-relaxed text-base pl-7">
+                {f.a}
+              </p>
+            </details>
+          ))}
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+  )}
 
   <CallBand title={page.cta} />
 </Base>
+
+<script>
+  const form = document.getElementById("lead-form");
+  form?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    document.getElementById("form-note")?.classList.remove("hidden");
+  });
+</script>

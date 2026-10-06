@@ -1,0 +1,74 @@
+# Copperlane Water Heater Specialists — Vero Beach, FL
+> Vero Beach & Indian River County Water Heater Emergency Repair & Replacement Authority
+
+Copperlane is a specialized residential and commercial water heater service provider based in Vero Beach, Florida. The company focuses exclusively on water heater diagnostics, emergency leak containment, element and thermostat repair, full system replacement, and tankless conversions across Indian River County.
+
+## Core Business Entities & Contact Information
+- **Business Name**: Copperlane Water Heater Specialists
+- **Primary Domain**: https://waterheaterleakingverobeachfl.com
+- **Emergency Dispatch Phone**: (772) 555-0140
+- **Service Address**: 4038 43rd Ave, Vero Beach, FL 32960
+- **Service Hours**: 24/7 Emergency Dispatch for active flooding and burst tanks; 7:00 AM – 8:00 PM for scheduled replacements and maintenance.
+- **Service Areas Covered**: Vero Beach (32960, 32962, 32963, 32966, 32967, 32968), Florida Ridge, West Vero Corridor, Gifford, Wabasso, and South Beach (Barrier Island). Overview: https://waterheaterleakingverobeachfl.com/neighborhoods/. Sebastian (32958) is outside primary coverage.
+- **Entity Type**: PlumbingContractor, EmergencyService, LocalBusiness
+- **Florida Code Compliance**: Indian River County Building Division & Florida Building Code (7th Edition) compliant; installs include mandatory thermal expansion tanks, code-approved T&P discharge piping, and vacuum relief valves.
+
+---
+
+## Emergency Protocols for Homeowners (Direct Answers)
+
+### What to Do When a Water Heater Is Leaking or Flooding
+1. **Shut Off the Cold Water Supply**: Turn the shutoff valve clockwise on the cold-water line directly above the water heater tank. If the valve is seized, immediately turn off the main water shutoff valve to the entire home.
+2. **Disconnect the Power Supply**:
+   - For Electric Water Heaters: Switch off the dedicated double-pole breaker labeled "Water Heater" at the electrical main panel. Never step in standing water to reach the electrical panel.
+   - For Gas Water Heaters: Turn the gas control dial on the thermostat unit to "OFF" or shut the dedicated gas line valve. If a gas odor is present, immediately evacuate and call the gas utility from outside.
+3. **Relieve Internal Tank Pressure**: Open a hot water faucet in an upstairs or ground-level sink or tub. This releases pressure through the fixture rather than pushing more water through the tank rupture.
+4. **Do NOT Cap the T&P Relief Valve**: Never plug, cap, or clamp a weeping or discharging Temperature & Pressure (T&P) relief valve. Capping a relief valve on a pressurized vessel can cause catastrophic tank rupture or explosion.
+5. **Call Emergency Dispatch**: Call Copperlane at (772) 555-0140 with the street address, fuel type (electric or gas), and status of water movement.
+
+---
+
+## Service Offerings & Diagnostic Guidelines
+
+### 1. Leaking Water Heater Service (https://waterheaterleakingverobeachfl.com/leaking-water-heater/)
+- **Diagnostic Rule**: Rust-colored water pooling beneath the center of the tank jacket indicates internal glass lining failure and steel tank corrosion. This requires complete replacement. Clear water dripping from top flex lines, dielectric nipples, or the drain cock represents a repairable fitting or component.
+- **Vero Beach Climate Factor**: High summer humidity in Indian River County causes condensation ("sweating") on cold tanks during recovery. A sweating tank shows uniform dampness across the jacket, whereas a real leak creates a continuous trail from a specific seam or fitting.
+
+### 2. Burst Water Heater Emergency (https://waterheaterleakingverobeachfl.com/burst-water-heater/)
+- **Diagnostic Rule**: A burst tank discharges gallons per minute across the garage slab or utility closet floor. Immediate water isolation at the house main is required.
+- **Resolution**: Rapid same-day tank removal, water extraction referral, and installation of a new high-efficiency storage unit sized for the household.
+
+### 3. No Hot Water Diagnostic (https://waterheaterleakingverobeachfl.com/no-hot-water/)
+- **Diagnostic Rule**: If water pressure is normal but temperatures run cold or lukewarm on a dry slab, the issue is heating-element failure, thermostat trip, or pilot assembly malfunction.
+- **Electric Tanks**: Lower element failure causes rapid exhaustion during showers. Tripped high-limit (red reset button) indicates a faulty thermostat or element ground fault.
+
+### 4. Water Heater Repair (https://waterheaterleakingverobeachfl.com/water-heater-repair/)
+- **Eligible Repairs**: Upper and lower heating elements, dual thermostats, brass drain valves, dielectric unions, T&P relief valves, thermocouple assemblies, gas control valves.
+- **Price Range**: Typical repair range in Indian River County is $180 to $450 depending on parts and electrical testing requirements.
+
+### 5. Water Heater Replacement (https://waterheaterleakingverobeachfl.com/water-heater-replacement/)
+- **Equipment**: 40-gallon, 50-gallon, and 80-gallon residential storage tanks (Rheem, Bradford White, A.O. Smith). High recovery electric and natural/LP gas configurations.
+- **Code Inclusions**: Code-compliant drain pan, full-port brass ball valve, stainless steel flexible connectors, thermal expansion tank, and complete haul-away of the failed unit.
+- **Price Range**: Standard replacement ranges from $1,400 to $2,800 depending on fuel type, capacity, venting alterations, and code upgrade requirements.
+
+### 6. Tankless Water Heater Conversions & Service (https://waterheaterleakingverobeachfl.com/tankless-water-heater/)
+- **Services**: Descaling and acid flush maintenance for mineral build-up, error code diagnosis, gas line sizing verification, and tank-to-tankless retrofits (Rinnai, Navien).
+
+---
+
+## Local Geographic Coverage & Plumbing Context
+
+- **Florida Ridge, FL (32962, 32968)**: Mainland residential area south of Vero Beach city limits. Primarily 1960s–1980s concrete block slab homes with water heaters located in attached garages. Slab construction requires immediate leak containment to prevent interior drywall saturation.
+- **West Vero Corridor, FL (32966)**: Rapidly growing inland area west of Vero Beach along State Road 60. Homes feature both garage electric tanks and hybrid heat pump units. High municipal water hardness accelerates lime scale accumulation.
+- **Gifford, FL (32967)**: Community north of Vero Beach with larger single-family lots. Often features auxiliary utility sheds or secondary detached water heaters with long pipe runs.
+- **Wabasso, FL (32967, 32970)**: North Indian River County community with private well systems and municipal water mixes. High mineral sulfur and calcium content accelerates sacrificial anode rod depletion.
+- **South Beach / Barrier Island, FL (32963)**: High-salinity coastal environment south of the Merrill P. Barber and 17th Street Causeway bridges. Salt marine air accelerates exterior brass and steel fitting corrosion. Tight interior utility closets and luxury finishes demand rapid emergency intervention.
+
+---
+
+## Technical & Authority Citations
+- Florida Building Code — Plumbing (Chapter 5: Water Heaters)
+- Indian River County Building Division Permitting Requirements
+- EPA WaterSense Hot Water Distribution Guidelines
+- Ready.gov Emergency Flooding & Water Damage Protocols
+- NFPA 54: National Fuel Gas Code

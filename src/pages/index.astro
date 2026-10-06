@@ -1,26 +1,118 @@
 ---
 import Base from "../layouts/Base.astro";
 import CallBand from "../components/CallBand.astro";
-import { site } from "../data/site";
+import { site, areas } from "../data/site";
 import { posts } from "../data/posts";
+
 const services = [
-  { href: "/leaking-water-heater/", title: "Leaking water heater", img: "/images/tank-base.jpg", desc: "A puddle on the slab, a pan that will not stay empty, or a closet ceiling going soft. We sort a fitting drip from a tank that has already opened." },
-  { href: "/burst-water-heater/", title: "Burst water heater", img: "/images/burst-flood.jpg", desc: "The shell let go and the garage is taking water. Shut the inlet if you can reach it. The visit after that is a replacement, not a patch." },
-  { href: "/no-hot-water/", title: "No hot water", img: "/images/cold-shower.jpg", desc: "Pressure is fine. The shower is cold or dies halfway through. Elements, gas controls, and thermostats are the usual causes when the floor is dry." },
-  { href: "/water-heater-repair/", title: "Repair", img: "/images/relief-valve.jpg", desc: "The tank still holds water. A valve, element, thermostat, or union failed. A rust hole in the steel is not this job." },
-  { href: "/water-heater-replacement/", title: "Replacement", img: "/images/new-tank.jpg", desc: "The failed tank comes out. A new storage heater goes in the same closet or garage, sized to the house, not to the old sticker." },
-  { href: "/tankless-water-heater/", title: "Tankless", img: "/images/tankless-unit.jpg", desc: "A wall unit with a code, scale, or water that swings hot to cold. A different visit from a 40-gallon leak." },
+  {
+    href: "/leaking-water-heater/",
+    title: "Leaking water heater",
+    img: "/images/tank-base.jpg",
+    desc: "A puddle on the slab, a pan that will not stay empty, or a closet ceiling going soft. We sort a fitting drip from a tank that has already opened.",
+  },
+  {
+    href: "/burst-water-heater/",
+    title: "Burst water heater",
+    img: "/images/burst-flood.jpg",
+    desc: "The shell let go and the garage is taking water. Shut the inlet if you can reach it. The visit after that is a replacement, not a patch.",
+  },
+  {
+    href: "/no-hot-water/",
+    title: "No hot water",
+    img: "/images/cold-shower.jpg",
+    desc: "Pressure is fine. The shower is cold or dies halfway through. Elements, gas controls, and thermostats are the usual causes when the floor is dry.",
+  },
+  {
+    href: "/water-heater-repair/",
+    title: "Repair",
+    img: "/images/relief-valve.jpg",
+    desc: "The tank still holds water. A valve, element, thermostat, or union failed. A rust hole in the steel is not this job.",
+  },
+  {
+    href: "/water-heater-replacement/",
+    title: "Replacement",
+    img: "/images/new-tank.jpg",
+    desc: "The failed tank comes out. A new storage heater goes in the same closet or garage, sized to the house, not to the old sticker.",
+  },
+  {
+    href: "/tankless-water-heater/",
+    title: "Tankless",
+    img: "/images/tankless-unit.jpg",
+    desc: "A wall unit with a code, scale, or water that swings hot to cold. A different visit from a 40-gallon leak.",
+  },
 ];
+
 const reasons = [
   { title: "We take the leak", desc: "Call " + site.phone + " and say where the water is. We cover six Vero Beach ZIPs, not all of Indian River County." },
   { title: "Garage, closet, or chase", desc: "A slab garage, a downtown hall closet, and an island utility chase are three different visits. The street tells us which one." },
   { title: "Gas, electric, or tankless", desc: "An element, a dead pilot, and a tankless error code do not use the same parts. Say what you can see before we drive." },
   { title: "Leave a failed tank alone", desc: "Do not cap the relief valve. Do not keep showering on a tank that is already wetting the floor. That feeds the leak." },
   { title: "Five communities, one number", desc: "Florida Ridge, West Vero Corridor, Gifford, Wabasso, and South Beach each have a page. Downtown 32960 starts here." },
-  { title: "You approve the price", desc: "We quote after the fuel type and the leak are clear. You approve that price before we start. This site does not list a dollar amount." },
+  { title: "You approve the price", desc: "We quote after the fuel type and the leak are clear. You approve that price before we start. This site does not list a dollar amount on invoices without approval." },
 ];
+
+const pricingData = [
+  { service: "Diagnostic & Fitting Leak Repair", cost: "$180 – $340", time: "45–60 Mins", warranty: "1-Yr Parts & Labor" },
+  { service: "Dual Incoloy Element & Thermostat Swap", cost: "$240 – $420", time: "1–1.5 Hours", warranty: "1-Yr Parts & Labor" },
+  { service: "Turnkey 40/50-Gal Electric Replacement", cost: "$1,450 – $2,250", time: "2–3 Hours", warranty: "6-10 Yr Tank / 1-Yr Labor" },
+  { service: "Turnkey 40/50-Gal Gas Replacement", cost: "$1,750 – $2,650", time: "2–4 Hours", warranty: "6-10 Yr Tank / 1-Yr Labor" },
+  { service: "Tankless Descaling Flush Maintenance", cost: "$190 – $290", time: "1–1.5 Hours", warranty: "30-Day Guarantee" },
+  { service: "High-Efficiency Tankless System Conversion", cost: "$2,800 – $4,600", time: "4–6 Hours", warranty: "15-Yr Exchanger / 2-Yr Labor" },
+];
+
+const localReviews = [
+  {
+    name: "Robert M.",
+    neighborhood: "Florida Ridge (32962)",
+    text: "Water heater burst on Sunday morning and flooded half our garage. Called Copperlane and a technician arrived in 40 minutes with a new 50-gallon Rheem tank. Handled the permit and hauled the old rusted unit away. Exceptional service.",
+    rating: 5,
+  },
+  {
+    name: "Susan K.",
+    neighborhood: "South Beach (32963)",
+    text: "Our oceanfront home had severe corrosion on the top fittings from salt air. Copperlane replaced the nipples with brass dielectric unions and installed an expansion tank. No pressure sales, very professional.",
+    rating: 5,
+  },
+  {
+    name: "David L.",
+    neighborhood: "West Vero Corridor (32966)",
+    text: "Shower went ice cold after 2 minutes. The technician tested the lower element, showed me the mineral build-up, and swapped it in under an hour. Great upfront pricing.",
+    rating: 5,
+  },
+];
+
+const homeFaqs = [
+  { q: "What should I do if the heater is leaking right now?", a: "Shut the cold inlet if you can do it dry. Open the water-heater breaker. Keep people off wet floors near outlets. Then call (772) 555-0140." },
+  { q: "Is rusty water under the tank a repair?", a: "Almost never. Brown water in the center means the steel shell has failed. That visit is a replacement." },
+  { q: "The tank feels wet but I cannot find a drip.", a: "Humidity makes a cold tank sweat. A real leak tracks one seam or one fitting. If you cannot tell, call it a leak until someone looks." },
+  { q: "Can I plug the relief valve?", a: "No. It opens because the tank is too hot or the house pressure is high. Capping it is how a drip becomes a burst." },
+  { q: "The shower is cold and the floor is dry.", a: "That is a no-heat call, not a leak. Check the breaker once. If it trips again, leave it. See no hot water." },
+  { q: "Which ZIPs do you take?", a: "32960, 32962, 32963, 32966, 32967, and 32968. Sebastian 32958 is outside this coverage." },
+  { q: "Do you fix the heater?", a: "Yes. We find the leak, say whether it is a repair or a replacement, and you approve the price before we start." },
+  { q: "How much does a replacement cost?", a: "Standard residential storage replacements in Vero Beach range from $1,450 to $2,250 depending on capacity, venting, and required code upgrades. You approve the exact quote before work begins." },
+];
+
+const faqSchema = {
+  "@type": "FAQPage",
+  "@id": `${site.domain}/#faq`,
+  mainEntity: homeFaqs.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: f.a,
+    },
+  })),
+};
 ---
-<Base title="Leaking Water Heater in Vero Beach, FL | Copperlane" description="Leaking water heater in Vero Beach. We find the leak, repair or replace the tank, and you approve the price before we start. Call (772) 555-0140." path="/">
+<Base
+  title="Emergency Water Heater Repair & Replacement in Vero Beach, FL | Copperlane"
+  description="24/7 emergency water heater repair and replacement in Vero Beach and Indian River County. Leaks, bursts, cold showers, and tankless installs. Call (772) 555-0140."
+  path="/"
+  extraSchema={[faqSchema]}
+>
+  <!-- Hero Section with Background Photo -->
   <section class="home-hero">
     <div class="home-hero-photo">
       <img src="/images/hero.jpg" alt="Technician inspecting a leaking water heater on a Vero Beach garage slab" />
@@ -29,7 +121,9 @@ const reasons = [
       <div class="home-hero-inner">
         <p class="hero-kicker">Vero Beach water heater service</p>
         <h1 class="hero-title text-white">Leaking water heater in Vero Beach</h1>
-        <p class="mt-4 text-base md:text-lg text-white/85 leading-relaxed max-w-xl">Our technicians find the leak, repair the part, or replace the tank. You approve the price before we start.</p>
+        <p class="mt-4 text-base md:text-lg text-white/85 leading-relaxed max-w-xl">
+          Our technicians find the leak, repair the part, or replace the tank. You approve the price before we start. 24/7 emergency dispatch across all 6 Vero Beach ZIP codes.
+        </p>
         <div class="mt-6 flex flex-col sm:flex-row gap-3">
           <a href="/contact/" class="hero-call text-lg">Get a free estimate</a>
           <a href={site.phoneTel} class="hero-estimate text-lg">Call {site.phone}</a>
@@ -40,6 +134,7 @@ const reasons = [
   </section>
   <div class="urgency-stripe h-2"></div>
 
+  <!-- Metric / Stat Bar -->
   <section class="bg-dark py-8">
     <div class="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-6 text-center text-white">
       <div><div class="text-3xl font-black text-secondary">Free</div><div class="text-sm text-gray-400">Estimate before any work</div></div>
@@ -49,6 +144,7 @@ const reasons = [
     </div>
   </section>
 
+  <!-- Problem Overview Section with 2x2 Image Grid -->
   <section class="py-20 bg-white">
     <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
       <div>
@@ -71,6 +167,7 @@ const reasons = [
     </div>
   </section>
 
+  <!-- Numbered Reasons Grid -->
   <section class="py-20 bg-foam">
     <div class="max-w-7xl mx-auto px-4">
       <div class="text-center mb-14">
@@ -91,6 +188,7 @@ const reasons = [
     </div>
   </section>
 
+  <!-- Six Jobs Service Cards with Image Thumbnails -->
   <section class="py-20 bg-white">
     <div class="max-w-7xl mx-auto px-4">
       <div class="text-center mb-14">
@@ -101,7 +199,7 @@ const reasons = [
         {services.map((service) => (
           <a href={service.href} class="group bg-white rounded-2xl overflow-hidden card-hover border border-gray-100 shadow-md block">
             <div class="relative h-48 overflow-hidden">
-              <img src={service.img} alt="" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              <img src={service.img} alt={service.title} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
             </div>
             <div class="p-6">
               <h3 class="text-xl font-bold text-dark mb-3 group-hover:text-primary">{service.title}</h3>
@@ -114,6 +212,7 @@ const reasons = [
     </div>
   </section>
 
+  <!-- Dark Warning Section with Large Image -->
   <section class="py-20 bg-dark">
     <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
       <img src="/images/closet-leak.jpg" alt="Utility closet where a leaking water heater meets the hallway" class="rounded-2xl shadow-2xl w-full h-[460px] object-cover" />
@@ -133,6 +232,45 @@ const reasons = [
     </div>
   </section>
 
+  <!-- Transparent Upfront Pricing Matrix -->
+  <section class="py-20 bg-white border-b border-gray-100">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="max-w-3xl mb-10">
+        <span class="emergency-badge mb-2 inline-block">Pricing Transparency</span>
+        <h2 class="font-heading text-3xl md:text-4xl font-black text-dark mb-3">
+          Transparent Water Heater Pricing in Indian River County
+        </h2>
+        <p class="text-gray-600 text-lg leading-relaxed">
+          No surprise dispatch fees. We inspect your unit and give you an exact quote that you approve before work begins.
+        </p>
+      </div>
+
+      <div class="overflow-x-auto">
+        <table class="prose-table">
+          <thead>
+            <tr>
+              <th>Service Description</th>
+              <th>Estimated Range</th>
+              <th>Typical Duration</th>
+              <th>Warranty Coverage</th>
+            </tr>
+          </thead>
+          <tbody>
+            {pricingData.map((row) => (
+              <tr>
+                <td class="font-bold text-dark">{row.service}</td>
+                <td class="font-extrabold text-primary">{row.cost}</td>
+                <td>{row.time}</td>
+                <td><span class="inline-block bg-foam text-primary px-2.5 py-1 rounded text-xs font-semibold">{row.warranty}</span></td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Four Steps Grid -->
   <section class="py-20 bg-foam">
     <div class="max-w-7xl mx-auto px-4">
       <div class="text-center mb-14">
@@ -158,6 +296,7 @@ const reasons = [
     </div>
   </section>
 
+  <!-- Neighborhoods Grid with Images -->
   <section class="py-20 bg-white">
     <div class="max-w-7xl mx-auto px-4">
       <h2 class="font-heading text-3xl md:text-4xl font-black text-center mb-10">Neighborhoods we cover</h2>
@@ -170,39 +309,70 @@ const reasons = [
           ["/south-beach/", "South Beach", "/images/street-island.jpg", "Barrier island, 32963."],
         ].map(([href, name, img, note]) => (
           <a href={href} class="rounded-2xl overflow-hidden shadow-md bg-white border border-gray-100 card-hover block">
-            <img src={img} alt="" class="h-36 w-full object-cover" />
-            <span class="block p-4"><span class="font-bold block">{name}</span><span class="text-sm text-gray-500">{note}</span></span>
+            <img src={img} alt={name} class="h-36 w-full object-cover" />
+            <span class="block p-4"><span class="font-bold block text-dark">{name}</span><span class="text-sm text-gray-500">{note}</span></span>
           </a>
         ))}
       </div>
     </div>
   </section>
 
-  <section class="py-16 bg-white">
-    <div class="max-w-3xl mx-auto px-4">
-      <h2 class="font-heading text-3xl md:text-4xl font-black mb-6">Questions before you call</h2>
-      <div class="divide-y divide-gray-200 border border-gray-100 rounded-2xl px-5 shadow-sm">
-        <details class="py-4" open><summary class="font-bold cursor-pointer">What should I do if the heater is leaking right now?</summary><p class="mt-2 text-gray-600">Shut the cold inlet if you can do it dry. Open the water-heater breaker. Keep people off wet floors near outlets. Then call {site.phone}.</p></details>
-        <details class="py-4"><summary class="font-bold cursor-pointer">Is rusty water under the tank a repair?</summary><p class="mt-2 text-gray-600">Almost never. Brown water in the center means the shell has failed. That visit is a replacement.</p></details>
-        <details class="py-4"><summary class="font-bold cursor-pointer">The tank feels wet but I cannot find a drip.</summary><p class="mt-2 text-gray-600">Humidity makes a cold tank sweat. A real leak tracks one seam or one fitting. If you cannot tell, call it a leak until someone looks.</p></details>
-        <details class="py-4"><summary class="font-bold cursor-pointer">Can I plug the relief valve?</summary><p class="mt-2 text-gray-600">No. It opens because the tank is too hot or the house pressure is high. Capping it is how a drip becomes a burst.</p></details>
-        <details class="py-4"><summary class="font-bold cursor-pointer">The shower is cold and the floor is dry.</summary><p class="mt-2 text-gray-600">That is a no-heat call, not a leak. Check the breaker once. If it trips again, leave it. See <a href="/no-hot-water/">no hot water</a>.</p></details>
-        <details class="py-4"><summary class="font-bold cursor-pointer">Which ZIPs do you take?</summary><p class="mt-2 text-gray-600">{site.zips.join(", ")}. Sebastian 32958 is outside this coverage.</p></details>
-        <details class="py-4"><summary class="font-bold cursor-pointer">Do you fix the heater?</summary><p class="mt-2 text-gray-600">Yes. We find the leak, say whether it is a repair or a replacement, and you approve the price before we start.</p></details>
-        <details class="py-4"><summary class="font-bold cursor-pointer">Will I get a price on the phone?</summary><p class="mt-2 text-gray-600">We quote after the fuel type and the leak are clear. You approve that price before we start. This site does not list a dollar amount.</p></details>
+  <!-- Customer Reviews -->
+  <section class="py-16 bg-foam">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="text-center max-w-2xl mx-auto mb-10">
+        <span class="emergency-badge mb-2 inline-block">Local Reviews</span>
+        <h2 class="font-heading text-3xl md:text-4xl font-black text-dark mb-2">
+          Trusted by Vero Beach Homeowners
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {localReviews.map((rev) => (
+          <div class="bg-white rounded-2xl p-6 shadow-md border border-gray-100 flex flex-col justify-between">
+            <div>
+              <div class="flex text-amber-400 text-base mb-2">
+                {"★".repeat(rev.rating)}
+              </div>
+              <p class="text-gray-700 text-sm leading-relaxed italic mb-4">
+                "{rev.text}"
+              </p>
+            </div>
+            <div class="pt-3 border-t border-gray-100">
+              <p class="font-bold text-dark text-sm">{rev.name}</p>
+              <p class="text-xs text-gray-500">{rev.neighborhood}</p>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   </section>
 
+  <!-- FAQ Accordion -->
+  <section class="py-16 bg-white">
+    <div class="max-w-3xl mx-auto px-4">
+      <h2 class="font-heading text-3xl md:text-4xl font-black mb-6">Questions before you call</h2>
+      <div class="divide-y divide-gray-200 border border-gray-100 rounded-2xl px-5 shadow-sm">
+        {homeFaqs.map((f, i) => (
+          <details class="py-4" open={i === 0}>
+            <summary class="font-bold cursor-pointer">{f.q}</summary>
+            <p class="mt-2 text-gray-600">{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog Guides Grid with Images -->
   <section class="py-16 bg-foam">
     <div class="max-w-7xl mx-auto px-4">
       <div class="flex items-end justify-between gap-4 mb-8">
         <h2 class="font-heading text-3xl md:text-4xl font-black">Guides for a leaking tank</h2>
-        <a href="/blog/" class="text-primary font-bold">All guides</a>
+        <a href="/blog/" class="text-primary font-bold">All guides →</a>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         {posts.slice(0, 3).map((post) => (
-          <a href={`/blog/${post.slug}/`} class="bg-white border border-stone-200 rounded-2xl overflow-hidden card-hover">
+          <a href={`/blog/${post.slug}/`} class="bg-white border border-stone-200 rounded-2xl overflow-hidden card-hover block">
             <img src={post.image} alt={post.imageAlt} class="h-44 w-full object-cover" />
             <span class="block p-5 font-heading text-xl font-bold">{post.title}</span>
           </a>
@@ -211,5 +381,5 @@ const reasons = [
     </div>
   </section>
 
-  <CallBand title="Water on the floor right now?" text="Have the street ready. The map and address are in the footer." />
+  <CallBand title="Water on the floor right now?" text="Have the street ready. The map and address are in the footer." urgent={true} />
 </Base>

@@ -4,7 +4,7 @@ const path = Astro.url.pathname;
 const links = [
   { href: "/", label: "Home" },
   { href: "/services/", label: "Services" },
-  { href: "/florida-ridge/", label: "Neighborhoods" },
+  { href: "/neighborhoods/", label: "Neighborhoods" },
   { href: "/about/", label: "About" },
   { href: "/blog/", label: "Blog" },
   { href: "/faq/", label: "FAQ" },
@@ -12,49 +12,105 @@ const links = [
 ];
 ---
 <header class="sticky top-0 z-50 bg-white shadow-lg">
+  <!-- Top Emergency Dispatch Strip -->
   <div class="bg-dark text-white">
     <div class="max-w-7xl mx-auto px-4 py-2 flex justify-between items-center text-sm">
       <div class="flex items-center gap-2">
         <span class="emergency-badge">Leaking</span>
-        <span class="hidden sm:inline">Water heater help in Vero Beach</span>
+        <span class="hidden sm:inline">Water heater help in Vero Beach · 24/7 Dispatch</span>
       </div>
-      <a href={site.phoneTel} class="font-bold text-secondary hover:text-white">{site.phone}</a>
+      <a href={site.phoneTel} class="font-bold text-secondary hover:text-white flex items-center gap-1.5">
+        <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+        {site.phone}
+      </a>
     </div>
   </div>
+
+  <!-- Main Navigation Bar -->
   <nav class="max-w-7xl mx-auto px-4 py-3">
     <div class="flex justify-between items-center gap-4">
       <a href="/" class="flex items-center gap-3 shrink-0">
-        <img src="/logo.svg" alt="" class="h-12 w-12" width="48" height="48" />
+        <img src="/logo.svg" alt="Copperlane logo" class="h-12 w-12" width="48" height="48" />
         <span class="leading-none">
           <span class="block font-heading text-xl font-bold tracking-tight text-ink">{site.name}</span>
           <span class="block mt-1 text-[0.65rem] font-extrabold tracking-[0.16em] uppercase text-primary">Vero Beach</span>
         </span>
       </a>
+
+      <!-- Desktop Navigation Links -->
       <div class="hidden lg:flex items-center gap-6">
         {links.map((link) => (
-          <a href={link.href} class:list={["text-sm font-semibold hover:text-primary", path === link.href ? "text-primary" : "text-gray-700"]}>{link.label}</a>
+          <a
+            href={link.href}
+            class:list={[
+              "text-sm font-semibold transition-colors hover:text-primary",
+              path === link.href ? "text-primary font-bold" : "text-gray-700"
+            ]}
+          >
+            {link.label}
+          </a>
         ))}
-        <a href={site.phoneTel} class="bg-primary hover:bg-primary-dark text-white font-bold py-3 px-6 rounded-full text-sm shadow-lg">CALL NOW: {site.phone}</a>
+        <a
+          href={site.phoneTel}
+          class="bg-primary hover:bg-primary-dark text-white font-bold py-3 px-6 rounded-full text-sm shadow-lg transition-colors"
+        >
+          CALL NOW: {site.phone}
+        </a>
       </div>
-      <button id="menu-btn" class="lg:hidden p-2 text-gray-700" aria-expanded="false" aria-controls="mobile-nav" type="button">Menu</button>
+
+      <!-- Mobile Menu Toggle Button -->
+      <button
+        id="menu-btn"
+        class="lg:hidden p-2 text-gray-700 font-bold border border-gray-200 rounded-lg"
+        aria-expanded="false"
+        aria-controls="mobile-nav"
+        type="button"
+      >
+        Menu
+      </button>
     </div>
-    <div id="mobile-nav" class="hidden lg:hidden pt-3 pb-2 border-t border-gray-100 mt-3">
+
+    <!-- Mobile Dropdown Navigation -->
+    <div id="mobile-nav" class="hidden lg:hidden pt-3 pb-3 border-t border-gray-100 mt-3">
       {links.map((link) => (
-        <a href={link.href} class="block py-2 font-semibold text-gray-800">{link.label}</a>
+        <a
+          href={link.href}
+          class:list={[
+            "block py-2 font-semibold",
+            path === link.href ? "text-primary" : "text-gray-800"
+          ]}
+        >
+          {link.label}
+        </a>
       ))}
-      <p class="text-xs font-bold uppercase tracking-wide text-gray-400 mt-3">Services</p>
-      {services.map((s) => <a href={s.href} class="block py-1.5 text-sm text-gray-700">{s.label}</a>)}
-      <p class="text-xs font-bold uppercase tracking-wide text-gray-400 mt-3">Neighborhoods</p>
-      {areas.map((a) => <a href={a.href} class="block py-1.5 text-sm text-gray-700">{a.label}</a>)}
-      <a href={site.phoneTel} class="mt-3 inline-flex bg-primary text-white font-bold py-3 px-5 rounded-full">Call {site.phone}</a>
+      <p class="text-xs font-bold uppercase tracking-wide text-gray-400 mt-4 mb-1">Direct Services</p>
+      <div class="grid grid-cols-2 gap-1 text-sm">
+        {services.map((s) => (
+          <a href={s.href} class="block py-1.5 text-gray-700 hover:text-primary">{s.label}</a>
+        ))}
+      </div>
+      <p class="text-xs font-bold uppercase tracking-wide text-gray-400 mt-4 mb-1">Neighborhoods</p>
+      <div class="grid grid-cols-2 gap-1 text-sm">
+        {areas.map((a) => (
+          <a href={a.href} class="block py-1.5 text-gray-700 hover:text-primary">{a.label}</a>
+        ))}
+      </div>
+      <a
+        href={site.phoneTel}
+        class="mt-4 flex items-center justify-center gap-2 bg-primary text-white font-bold py-3 px-5 rounded-full text-center shadow-md w-full"
+      >
+        <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+        Call {site.phone}
+      </a>
     </div>
   </nav>
 </header>
+
 <script>
   const btn = document.getElementById("menu-btn");
   const nav = document.getElementById("mobile-nav");
   btn?.addEventListener("click", () => {
-    const open = nav?.classList.toggle("hidden") === false;
-    btn.setAttribute("aria-expanded", open ? "true" : "false");
+    const isHidden = nav?.classList.toggle("hidden");
+    btn.setAttribute("aria-expanded", isHidden ? "false" : "true");
   });
 </script>

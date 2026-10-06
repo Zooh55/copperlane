@@ -1,26 +1,94 @@
 ---
 import Base from "../../layouts/Base.astro";
+import CallBand from "../../components/CallBand.astro";
 import { posts } from "../../data/posts";
+import { site } from "../../data/site";
+
+const [featured, ...rest] = posts;
 ---
-<Base title="Water heater guides | Copperlane Vero Beach" description="Short guides on leaking tanks, shutoff steps, and gas versus electric heaters in Vero Beach." path="/blog/">
-  <section class="py-16 bg-ink text-white">
+<Base
+  title="Water Heater Diagnostic & Repair Guides | Copperlane Vero Beach"
+  description="Expert troubleshooting guides for leaking water heaters, cold showers, shutoff steps, relief valve drips, and Florida slab plumbing in Vero Beach."
+  path="/blog/"
+>
+  <section class="page-hero">
+    <img src={featured.image} alt={featured.imageAlt} class="page-hero-photo" />
+    <div class="page-hero-shade" aria-hidden="true"></div>
+    <div class="relative max-w-7xl mx-auto px-4 py-16 md:py-24 w-full">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+        <a href="/">Home</a>
+        <span class="breadcrumb-separator">/</span>
+        <span class="text-secondary font-semibold">Guides</span>
+      </nav>
+      <div class="max-w-2xl">
+        <p class="hero-kicker">Guides</p>
+        <h1 class="hero-title text-white">Water heater notes for Vero Beach</h1>
+        <p class="mt-4 text-lg text-white/85 max-w-xl">
+          How a tank fails on a slab, what to shut off, and when the job is a repair or a replacement.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-14 md:py-16 bg-white">
     <div class="max-w-7xl mx-auto px-4">
-      <p class="hero-kicker">Guides</p>
-      <h1 class="hero-title">Water heater notes for Vero Beach</h1>
-      <p class="mt-4 text-white/75 max-w-2xl">Plain steps. No price list. If water is spreading, call before you finish an article.</p>
-    </div>
-  </section>
-  <section class="py-16">
-    <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-6">
-      {posts.map((post) => (
-        <a href={`/blog/${post.slug}/`} class="bg-white border border-stone-200 rounded-2xl overflow-hidden card-hover">
-          <img src={post.image} alt={post.imageAlt} class="h-48 w-full object-cover" />
-          <span class="block p-5">
-            <span class="text-sm text-gray-500">{post.date}</span>
-            <span class="block font-heading text-xl font-bold mt-1">{post.title}</span>
+      <!-- Featured Guide with Image -->
+      <a
+        href={`/blog/${featured.slug}/`}
+        class="grid grid-cols-1 lg:grid-cols-2 bg-dark text-white rounded-3xl overflow-hidden mb-12 card-hover shadow-xl block"
+      >
+        <img
+          src={featured.image}
+          alt={featured.imageAlt}
+          class="h-64 lg:h-full w-full object-cover min-h-72"
+        />
+        <div class="p-8 md:p-12 flex flex-col justify-center">
+          <span class="text-secondary text-xs font-extrabold tracking-[0.16em] uppercase">
+            Start here · {featured.date}
           </span>
-        </a>
-      ))}
+          <h2 class="font-heading text-2xl md:text-3xl font-black mt-3 leading-tight text-white">
+            {featured.title}
+          </h2>
+          <p class="mt-4 text-white/80 leading-relaxed text-base">
+            {featured.description}
+          </p>
+          <span class="inline-block mt-6 font-bold text-secondary text-sm">
+            Read the guide →
+          </span>
+        </div>
+      </a>
+
+      <!-- Guides Grid with Image on Every Card -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {rest.map((post) => (
+          <a
+            href={`/blog/${post.slug}/`}
+            class="bg-white border border-stone-200 rounded-2xl overflow-hidden card-hover block shadow-sm"
+          >
+            <img
+              src={post.image}
+              alt={post.imageAlt}
+              class="h-48 w-full object-cover"
+            />
+            <div class="p-5">
+              <span class="text-xs font-bold tracking-wide uppercase text-primary">
+                {post.date}
+              </span>
+              <h3 class="font-heading text-xl font-bold mt-2 leading-snug text-dark">
+                {post.title}
+              </h3>
+              <p class="text-gray-600 text-sm mt-2 line-clamp-2 leading-relaxed">
+                {post.description}
+              </p>
+            </div>
+          </a>
+        ))}
+      </div>
     </div>
   </section>
+
+  <CallBand
+    title="Want this heater looked at?"
+    text="Have the street ready. You approve the price before we start."
+  />
 </Base>
