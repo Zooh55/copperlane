@@ -3,7 +3,7 @@ export const site = {
   shortName: "Copperlane",
   legalName: "Copperlane Plumbing & Water Heater Services",
   domain: "https://waterheaterleakingverobeachfl.com",
-  phone: "+17725100073",
+  phone: "(772) 510-0073",
   phoneTel: "tel:+17725100073",
   street: "4038 43rd Ave",
   city: "Vero Beach",
