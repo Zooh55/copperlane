@@ -95,10 +95,10 @@ const faqSchema = {
           Our technicians find the leak, repair the part, or replace the tank. You approve the price before we start. 24/7 emergency dispatch across all 6 Vero Beach ZIP codes.
         </p>
         <div class="mt-6 flex flex-col sm:flex-row gap-3">
-          <a href="/contact/" class="hero-call text-lg">Get a free estimate</a>
+          <a href={site.phoneTel} class="hero-call text-lg">Get a free estimate</a>
           <a href={site.phoneTel} class="hero-estimate text-lg">Call {site.phone}</a>
         </div>
-        <p class="mt-4 text-white/80 text-sm font-semibold">Need help now? Call {site.phone}</p>
+        <p class="mt-4 text-white/80 text-sm font-semibold">Need help now? <a href={site.phoneTel} class="underline decoration-white/40 underline-offset-4">Call {site.phone}</a></p>
       </div>
     </div>
   </section>
