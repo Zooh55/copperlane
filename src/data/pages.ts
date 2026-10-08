@@ -890,8 +890,9 @@ export const pages: PageDoc[] = [
     introTitle: "Our Commitment to Your Privacy",
     paragraphs: [
       "This Privacy Policy outlines how Copperlane Water Heater Specialists ('Copperlane', 'we', 'our', or 'us') handles personal information collected via our website (https://waterheaterleakingverobeachfl.com) and direct telephone communications.",
-      "We operate under a simple policy: we only request the information necessary to evaluate your water heater, dispatch a technician to your physical address, complete the agreed plumbing service, and file required building permits with the Indian River County Building Division.",
-      "We implement strict administrative and technological safeguards to protect your personal details, and we never share your data with third-party advertisers or lead-generation syndicates.",
+      "This website operates as a referral service. Information you provide may be shared with an independent local water heater service provider so they can contact you and complete the requested work.",
+      "We operate under a simple policy: we only request the information necessary to evaluate your water heater request, connect you with a local provider, and support scheduling or permit needs where applicable.",
+      "We implement strict administrative and technological safeguards to protect your personal details, and we never sell your data to unrelated third-party advertisers.",
     ],
     bullets: [
       "Zero selling or sharing of personal data with third-party marketers",
